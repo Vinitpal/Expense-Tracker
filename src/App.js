@@ -1,16 +1,15 @@
-
-// import './App.css';
-import { Routes, Route } from "react-router-dom"
-import Home  from "./pages/home";
-import  Dashboard  from './pages/dashboard';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/home";
+import Dashboard from "./pages/dashboard";
 
 function App() {
   return (
     <>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-    </Routes>
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
     </>
   );
 }
