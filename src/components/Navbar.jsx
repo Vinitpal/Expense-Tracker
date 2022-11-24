@@ -1,53 +1,34 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "./Navbar.css";
-{/* <link rel="stylesheet" href="Navbar.css"> */}
-const Navbar = () => {
-    return(
-        // <div className=""></div>
-        <>
-        <div className="navbar">
-		    <div className="logo">
-			<a href="/">Expense Tracker</a>
-		</div>
-		<div className="nav_right">
-			<ul>
-				<li className="nr_li dd_main">
-					<img src="profile_pic.png" alt="profile_img" />
-				
-					<div className="dd_menu">
-						<div className="dd_left">
-							{/* <ul>
-								<li><i class="fas fa-map-marker-alt"></i></li>
-								<li><i class="far fa-star"></i></li>
-								<li><i class="far fa-plus-square"></i></li>
-								<li><i class="fas fa-cog"></i></li>
-								<li><i class="fas fa-download"></i></li>
-								<li><i class="fas fa-sign-out-alt"></i></li>
-							</ul> */}
-						</div>
-						<div className="dd_right">
-							<ul>
-								<li>Location</li>
-								<li>Favorites</li>
-								<li>Addpeople</li>
-								<li>Settings</li>
-								<li>Downloads</li>
-								<li>Logout</li>
-							</ul>
-						</div>
-					</div>
-				</li>
-				<li className="nr_li">
-					<i className="fas fa-envelope-open-text"></i>
-				</li>
-			</ul>
-		</div>
-	</div>
-        </>
-    )
-}
 
+// icons
+import { AiOutlineUser } from "react-icons/ai";
 
+// components
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
 
-export default Navbar;
+const NavbarComponent = () => {
+  return (
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand href="#home">Expense Tracker</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#link">Dashboard</Nav.Link>
+          </Nav>
+          <Nav className="ms-auto">
+            <Nav.Item>
+              Vinitpal Singh Arora
+              <AiOutlineUser className="ms-2 display-6" />
+            </Nav.Item>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+};
+
+export default NavbarComponent;
