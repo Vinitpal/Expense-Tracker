@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
+import LandingSection from "../../components/Homepage/LandingSection";
 
 const Home = () => {
-    return (
-        <div>
-            <h2>home</h2>
-            Hello
-        <div className='dashoard'></div>
-        </div>
-    )
-}
+  return (
+    <div>
+      {/** HOME PAGE */}
+      <LandingSection />
+    </div>
+  );
+};
 
 export default Home;
