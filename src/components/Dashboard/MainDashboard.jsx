@@ -5,6 +5,10 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
 
 const MainDashboard = () => {
+  const HandleBalanceEdit = () => {
+    console.log("balance edit");
+  };
+
   return (
     <div className="main-dashboard">
       <div className="expenses">
@@ -15,6 +19,7 @@ const MainDashboard = () => {
             <Button
               icon={<HiOutlineCurrencyRupee size={"20px"} />}
               color="success"
+              onClick={() => HandleBalanceEdit()}
             >
               1500
               <div className="icon">
