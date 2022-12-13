@@ -1,32 +1,7 @@
 import { Button, Table } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 
-export default function ExpenseTable() {
-  const [loadingUser, setLoadingUser] = useState(true);
-  const [user, setUser] = useState();
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      setLoadingUser(true);
-      const res = await fetch(
-        `http://localhost:8080/user/a038c272-c533-44d0-896c-a684974b4231`
-      );
-      const data = await res.json();
-      console.log(
-        data.Expenses.sort(
-          (a, b) => Date.parse(a.CreatedAt) - Date.parse(b.CreatedAt)
-        )
-      );
-      console.log(
-        data.Expenses[0].CreatedAt.split("T")[0].split("-").reverse().join("-")
-      );
-      setUser(data);
-      setLoadingUser(false);
-    };
-
-    fetchUser();
-  }, []);
-
+export default function ExpenseTable({ user, loadingUser }) {
   return (
     <Table
       css={{

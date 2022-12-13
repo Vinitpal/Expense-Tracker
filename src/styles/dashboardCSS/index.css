@@ -1,1 +1,7 @@
 @import "./main-dashboard.css";
+
+/* css for clear button in expense modal */
+.nextui-c-ctQnhE {
+  position: absolute;
+  right: 8px !important;
+}

@@ -1,10 +1,27 @@
-import React from "react";
-import { Button, Grid } from "@nextui-org/react";
+import React, { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
+import {
+  Modal,
+  Grid,
+  Input,
+  Row,
+  Checkbox,
+  Button,
+  Text,
+} from "@nextui-org/react";
+import UpdateBalanceModal from "./UpdateBalanceModal";
 
-const MainDashboard = () => {
+const MainDashboard = ({ user, loadingUser, setUser }) => {
+  const [showBalanceModal, setShowBalanceModal] = useState(false);
+  const balanceHandler = () => setShowBalanceModal(true);
+
+  const closeBalanceHandler = () => {
+    setShowBalanceModal(false);
+    console.log("closed");
+  };
+
   const HandleBalanceEdit = () => {
     console.log("balance edit");
   };
@@ -13,19 +30,24 @@ const MainDashboard = () => {
     <div className="main-dashboard">
       <div className="expenses">
         {/* current balance */}
-
         <Grid.Container gap="2">
           <Grid>
             <Button
               icon={<HiOutlineCurrencyRupee size={"20px"} />}
               color="success"
-              onClick={() => HandleBalanceEdit()}
+              onPress={balanceHandler}
             >
-              1500
+              {!loadingUser && user.balance}
               <div className="icon">
                 <FiEdit />
               </div>
             </Button>
+            <UpdateBalanceModal
+              visible={showBalanceModal}
+              closeHandler={closeBalanceHandler}
+              setShowBalanceModal={setShowBalanceModal}
+              setUser={setUser}
+            />
           </Grid>
 
           {/* amount expended */}
