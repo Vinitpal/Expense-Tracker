@@ -12,7 +12,8 @@ function ResponsiveAppBar() {
           h1
           size={42}
           css={{
-            textGradient: "45deg, $blue600 -20%, $pink600 50%",
+
+            color : "Green"
           }}
           weight="bold"
           as={Link}
