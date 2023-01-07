@@ -12,7 +12,8 @@ import {
   Button,
   Text,
 } from "@nextui-org/react";
-import UpdateBalanceModal from "./UpdateBalanceModal";
+import UpdateBalanceModal from "../modals/UpdateBalanceModal";
+import AddEntryModal from "../modals/AddEntryModal";
 // import { API_PATH } from "../../Path";
 // import axios from "axios";
 
@@ -24,9 +25,12 @@ const MainDashboard = ({ user, loadingUser, setUser }) => {
     setShowBalanceModal(false);
     console.log("closed");
   };
+  const [showEntryModal, setShowEntryModal] = useState(false);
+  const entryHandler = () => setShowEntryModal(true);
 
-  const HandleBalanceEdit = () => {
-    console.log("balance edit");
+  const closeEntryHandler = () => {
+    setShowEntryModal(false);
+    console.log("closed");
   };
 
   return (
@@ -35,9 +39,9 @@ const MainDashboard = ({ user, loadingUser, setUser }) => {
       <div className="amount-btn-wrapper">
         <div className="btn-container">
           {/* Current Balance */}
-          <div className="current-balance">
+          <div className="current-balance" onClick={balanceHandler}>
             <button type="button">
-              ₹ 1500
+              ₹ {!loadingUser && user.balance}
               <AiFillEdit className="icon" />
             </button>
             <p>Current Balance</p>
@@ -51,13 +55,25 @@ const MainDashboard = ({ user, loadingUser, setUser }) => {
         </div>
 
         {/* Add New Record */}
-        <button type="button" className="add-new-record">
+        <button type="button" className="add-new-record" onClick={entryHandler}>
           <IoAddCircle className="icon" />
           Add New Record
         </button>
-      </div>
 
-      <div className="expense-table">{/* table */}</div>
+        <UpdateBalanceModal
+          visible={showBalanceModal}
+          closeHandler={closeBalanceHandler}
+          setShowBalanceModal={setShowBalanceModal}
+          setUser={setUser}
+        />
+
+        <AddEntryModal
+          visible={showEntryModal}
+          closeHandler={closeEntryHandler}
+          setShowEntryModal={setShowEntryModal}
+          setUser={setUser}
+        />
+      </div>
     </div>
   );
 };

@@ -34,7 +34,7 @@ const Dashboard = () => {
     <div className="dashboard-page">
       <Navbar />
       <MainDashboard loadingUser={loadingUser} user={user} setUser={setUser} />
-      <ExpenseTable loadingUser={loadingUser} user={user} />
+      <ExpenseTable loadingUser={loadingUser} user={user} setUser={setUser} />
     </div>
   );
 };

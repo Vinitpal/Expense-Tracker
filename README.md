@@ -11,7 +11,6 @@
 
 ## dashboard
 
-- table section styling
 - functioning of btns container area
 - functioning of tables rows
 - add graphs if time remaining
@@ -24,3 +23,4 @@
 - navbar
 - landing section styling
 - style the btns container area
+- table section styling
