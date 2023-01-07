@@ -2,19 +2,70 @@
   width: 100%;
   height: 100vh;
   border-radius: 5px;
-  background: rgba(255, 255, 255, 0.75);
   overflow: hidden;
 }
 
+/****** hero text css starts ******/
+
 .landing-section .hero-text {
   width: 50%;
-  height: 88%;
+  height: 78%;
   padding-left: 4rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
 }
+
+.landing-section .hero-text h2 {
+  font-size: 3.8rem;
+  line-height: 4.1rem;
+  font-weight: 400;
+  width: 70%;
+  color: rgba(0, 0, 0, 0.58);
+}
+
+.landing-section .hero-text h2 span {
+  color: #0f9b0f;
+}
+
+.landing-section .hero-text p {
+  font-size: 1.3rem;
+  line-height: 1.7rem;
+  margin: 1rem 0;
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.landing-section .hero-text .btn-wrapper button {
+  margin-top: 0.5rem;
+  margin-right: 2rem;
+  padding: 0.7rem 2.4rem;
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.landing-section .hero-text .btn-wrapper button.sign-up {
+  color: #f4fbf4;
+  background: rgba(15, 155, 15, 0.5);
+  box-shadow: 0px 3px 8px rgb(0 0 0 / 25%);
+}
+
+.landing-section .hero-text .btn-wrapper button.guest {
+  color: #0f9b0f;
+  background: rgba(244, 251, 244, 0.5);
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+.landing-section .hero-text .btn-wrapper button:hover {
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+/****** hero text css end ******/
+/****** Wave animation css starts ******/
 
 .wave {
   width: 100%;
@@ -25,7 +76,7 @@
   /* margin-left: -500px; */
   margin-top: -500px;
   border-radius: 35%;
-  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+  background-image: linear-gradient(to top, #4a94e9 0%, #c4daf9 100%);
   animation: wave 15s infinite linear;
 }
 
@@ -37,3 +88,4 @@
     transform: rotate(360deg);
   }
 }
+/****** Wave animation css ends ******/

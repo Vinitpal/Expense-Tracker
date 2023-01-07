@@ -16,7 +16,11 @@ export default function ExpenseTable({ user, loadingUser }) {
         <Table.Column>LABEL</Table.Column>
         <Table.Column>EXPENSES</Table.Column>
       </Table.Header>
-      <Table.Body>
+      <Table.Body
+        css={{
+          zIndex: 1,
+        }}
+      >
         {user && user.length > 0 ? (
           <Table.Row key={1}>
             <Table.Cell>{"loading"}</Table.Cell>

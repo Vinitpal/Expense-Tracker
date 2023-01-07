@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { FiEdit } from "react-icons/fi";
-import { IoIosAddCircleOutline } from "react-icons/io";
+import { IoAddCircle } from "react-icons/io5";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
+import { AiFillEdit } from "react-icons/ai";
 import {
   Modal,
   Grid,
@@ -12,6 +13,8 @@ import {
   Text,
 } from "@nextui-org/react";
 import UpdateBalanceModal from "./UpdateBalanceModal";
+// import { API_PATH } from "../../Path";
+// import axios from "axios";
 
 const MainDashboard = ({ user, loadingUser, setUser }) => {
   const [showBalanceModal, setShowBalanceModal] = useState(false);
@@ -28,49 +31,30 @@ const MainDashboard = ({ user, loadingUser, setUser }) => {
 
   return (
     <div className="main-dashboard">
-      <div className="expenses">
-        {/* current balance */}
-        <Grid.Container gap="2">
-          <Grid>
-            <Button
-              icon={<HiOutlineCurrencyRupee size={"20px"} />}
-              color="success"
-              onPress={balanceHandler}
-            >
-              {!loadingUser && user.balance}
-              <div className="icon">
-                <FiEdit />
-              </div>
-            </Button>
-            <UpdateBalanceModal
-              visible={showBalanceModal}
-              closeHandler={closeBalanceHandler}
-              setShowBalanceModal={setShowBalanceModal}
-              setUser={setUser}
-            />
-          </Grid>
+      {/* Amount Buttons Wrapper */}
+      <div className="amount-btn-wrapper">
+        <div className="btn-container">
+          {/* Current Balance */}
+          <div className="current-balance">
+            <button type="button">
+              ₹ 1500
+              <AiFillEdit className="icon" />
+            </button>
+            <p>Current Balance</p>
+          </div>
 
-          {/* amount expended */}
-          <Grid>
-            <Button
-              icon={<HiOutlineCurrencyRupee size={"20px"} />}
-              bordered
-              color="primary"
-            >
-              2000
-            </Button>
-          </Grid>
-        </Grid.Container>
-
-        {/* add new record */}
-        <div>
-          <Button
-            icon={<IoIosAddCircleOutline size={"20px"} />}
-            color="success"
-          >
-            Add New Record
-          </Button>
+          {/* Amount Expended */}
+          <div className="amount-expended">
+            <button type="button">₹ 2500</button>
+            <p>Amount Expended</p>
+          </div>
         </div>
+
+        {/* Add New Record */}
+        <button type="button" className="add-new-record">
+          <IoAddCircle className="icon" />
+          Add New Record
+        </button>
       </div>
 
       <div className="expense-table">{/* table */}</div>

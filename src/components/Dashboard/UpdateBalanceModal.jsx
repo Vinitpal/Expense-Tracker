@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Modal, Input, Row, Checkbox, Button, Text } from "@nextui-org/react";
+import { Modal, Input, Button, Text } from "@nextui-org/react";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
+import { API_PATH } from "../../Path";
+import axios from "axios";
 
 const UpdateBalanceModal = ({
   visible,
@@ -12,18 +14,22 @@ const UpdateBalanceModal = ({
 
   const updateCurrentBalance = async () => {
     try {
-      const body = { Balance: +newBalance };
+      const body = JSON.stringify({ Balance: +newBalance });
       console.log(body);
-      const response = await fetch(
-        `http://localhost:8080/user/a038c272-c533-44d0-896c-a684974b4231`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        }
+
+      const headers = {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      };
+      const response = await axios.put(
+        `${API_PATH}/user/a038c272-c533-44d0-896c-a684974b4231`,
+        body,
+        { mode: "cors" },
+        { headers }
       );
 
-      setUser(response.json());
+      console.log("working, response: ", response.data);
+      setUser(response.data);
       setShowBalanceModal(false);
     } catch (error) {
       console.log(error);
@@ -63,7 +69,7 @@ const UpdateBalanceModal = ({
         <Button auto flat color="error" onPress={closeHandler}>
           Close
         </Button>
-        <Button auto color="success" onPress={updateCurrentBalance}>
+        <Button auto color="success" onPress={() => updateCurrentBalance()}>
           Confirm
         </Button>
       </Modal.Footer>

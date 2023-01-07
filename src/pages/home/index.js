@@ -1,10 +1,12 @@
 import React from "react";
 import LandingSection from "../../components/Homepage/LandingSection";
+import Navbar from "../../components/Navbar";
 
 const Home = () => {
   return (
-    <div>
+    <div className="home-page">
       {/** HOME PAGE */}
+      <Navbar theme="home" />
       <LandingSection />
     </div>
   );

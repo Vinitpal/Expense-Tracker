@@ -7,7 +7,6 @@ import Navbar from "./components/Navbar";
 function App() {
   return (
     <>
-      <Navbar />
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<Home />} />
