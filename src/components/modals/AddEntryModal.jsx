@@ -5,32 +5,51 @@ import { API_PATH } from "../../Path";
 import axios from "axios";
 
 const AddEntryModal = ({
+  user,
+  setUser,
   visible,
   closeHandler,
-  setUser,
-  setShowBalanceModal,
+  setShowEntryModal,
 }) => {
-  const [newBalance, setBalance] = useState();
+  const [title, setTitle] = useState();
+  const [label, setLabel] = useState();
+  const [expendAmount, setExpendAmount] = useState();
 
   const addEntry = async () => {
     try {
-      const body = JSON.stringify({ Balance: +newBalance });
+      // create new expense api call
+      const body = JSON.stringify({
+        title,
+        label,
+        expend_amount: +expendAmount,
+
+        User_ID: user.User_ID,
+      });
       console.log(body);
 
       const headers = {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
       };
-      const response = await axios.put(
-        `${API_PATH}/user/a038c272-c533-44d0-896c-a684974b4231`,
+
+      const response = await axios.post(
+        `${API_PATH}/expense`,
         body,
         { mode: "cors" },
         { headers }
       );
 
       console.log("working, response: ", response.data);
-      setUser(response.data);
-      setShowBalanceModal(false);
+
+      // refetch and show updated data
+      const userData = await fetch(
+        `http://localhost:8080/user/a038c272-c533-44d0-896c-a684974b4231`
+      );
+      const data = await userData.json();
+      setUser(data);
+
+      // close modal
+      setShowEntryModal(false);
     } catch (error) {
       console.log(error);
     }
@@ -56,10 +75,13 @@ const AddEntryModal = ({
       <Modal.Body>
         {/* Enter New Title */}
         <Input
-          clearable
           bordered
           fullWidth
-          //   onChange={(e) => setBalance(e.target.value)}
+          onChange={(e) => {
+            const str = e.target.value;
+            const value = str.charAt(0).toUpperCase() + str.slice(1);
+            setTitle(value);
+          }}
           color="primary"
           type={"text"}
           label="Title"
@@ -67,10 +89,13 @@ const AddEntryModal = ({
         />
         {/* Enter New Label */}
         <Input
-          clearable
           bordered
           fullWidth
-          //   onChange={(e) => setBalance(e.target.value)}
+          onChange={(e) => {
+            const str = e.target.value;
+            const value = str.charAt(0).toUpperCase() + str.slice(1);
+            setLabel(value);
+          }}
           color="primary"
           type={"text"}
           label="Label"
@@ -78,10 +103,9 @@ const AddEntryModal = ({
         />
         {/* Enter Expenses */}
         <Input
-          clearable
           bordered
           fullWidth
-          //   onChange={(e) => setBalance(e.target.value)}
+          onChange={(e) => setExpendAmount(Math.abs(e.target.value))}
           color="primary"
           type={"number"}
           label="Expenses"

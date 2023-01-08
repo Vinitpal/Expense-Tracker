@@ -87,6 +87,7 @@ const MainDashboard = ({ user, loadingUser, setUser }) => {
           visible={showEntryModal}
           closeHandler={closeEntryHandler}
           setShowEntryModal={setShowEntryModal}
+          user={user}
           setUser={setUser}
         />
       </div>

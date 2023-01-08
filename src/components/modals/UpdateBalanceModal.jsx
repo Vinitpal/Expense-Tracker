@@ -57,7 +57,7 @@ const UpdateBalanceModal = ({
           clearable
           bordered
           fullWidth
-          onChange={(e) => setBalance(e.target.value)}
+          onChange={(e) => setBalance(Math.abs(e.target.value))}
           color="primary"
           type={"number"}
           placeholder="Enter new amount"
