@@ -8,6 +8,7 @@ import UpdateEntryModal from "../modals/UpdateEntryModal";
 export default function ExpenseTable({ user, loadingUser, setUser }) {
   const [showEntryModal, setShowEntryModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedID, setSelectedID] = useState(null);
   const entryHandler = () => setShowEntryModal(true);
   const deleteHandler = () => setShowDeleteModal(true);
 
@@ -44,16 +45,15 @@ export default function ExpenseTable({ user, loadingUser, setUser }) {
             zIndex: 1,
           }}
         >
-          {user && user.length > 0 ? (
-            <Table.Row key={1}>
+          {!user ? (
+            <Table.Row css={{ textAlign: "center" }} key={1}>
               <Table.Cell>{"loading"}</Table.Cell>
-              <Table.Cell>{"load213ing"}</Table.Cell>
+              <Table.Cell>{"loading"}</Table.Cell>
               <Table.Cell>{"loading"}</Table.Cell>
               <Table.Cell>{"loading"}</Table.Cell>
               <Table.Cell>{"loading"}</Table.Cell>
             </Table.Row>
           ) : (
-            !loadingUser &&
             [
               ...user.Expenses.sort(
                 (a, b) => Date.parse(b.CreatedAt) - Date.parse(a.CreatedAt)
@@ -76,14 +76,20 @@ export default function ExpenseTable({ user, loadingUser, setUser }) {
                   <button
                     type="button"
                     className="icon-btn update"
-                    onClick={entryHandler}
+                    onClick={() => {
+                      setSelectedID(item.Expense_ID);
+                      entryHandler();
+                    }}
                   >
                     <AiFillEdit className="icon" />
                   </button>
                   <button
                     type="button"
                     className="icon-btn delete"
-                    onClick={deleteHandler}
+                    onClick={() => {
+                      setSelectedID(item.Expense_ID);
+                      deleteHandler();
+                    }}
                   >
                     <AiFillDelete className="icon" />
                   </button>
@@ -97,12 +103,16 @@ export default function ExpenseTable({ user, loadingUser, setUser }) {
         visible={showEntryModal}
         closeHandler={closeEntryHandler}
         setShowEntryModal={setShowEntryModal}
+        expenseID={selectedID}
+        user={user}
         setUser={setUser}
       />
       <DeleteEntryModal
         visible={showDeleteModal}
         closeHandler={closeDeleteHandler}
         setShowDeleteModal={setShowDeleteModal}
+        expenseID={selectedID}
+        user={user}
         setUser={setUser}
       />
     </>

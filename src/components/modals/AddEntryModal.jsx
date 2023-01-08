@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Input, Button, Text } from "@nextui-org/react";
-import { HiOutlineCurrencyRupee } from "react-icons/hi";
 import { API_PATH } from "../../Path";
 import axios from "axios";
+import { getUserData } from "../../util";
 
 const AddEntryModal = ({
   user,
@@ -42,10 +42,7 @@ const AddEntryModal = ({
       console.log("working, response: ", response.data);
 
       // refetch and show updated data
-      const userData = await fetch(
-        `http://localhost:8080/user/a038c272-c533-44d0-896c-a684974b4231`
-      );
-      const data = await userData.json();
+      const data = await getUserData(user.User_ID);
       setUser(data);
 
       // close modal

@@ -57,7 +57,7 @@ const MainDashboard = ({ user, loadingUser, setUser }) => {
           {/* Current Balance */}
           <div className="current-balance" onClick={balanceHandler}>
             <button type="button">
-              ₹ {!loadingUser && user.balance}
+              ₹ {!loadingUser ? user.balance : "loading"}
               <AiFillEdit className="icon" />
             </button>
             <p>Current Balance</p>

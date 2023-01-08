@@ -1,36 +1,25 @@
-import React, { useState } from "react";
-import { Modal, Input, Button, Text } from "@nextui-org/react";
-import { HiOutlineCurrencyRupee } from "react-icons/hi";
+import React from "react";
+import { Modal, Button, Text } from "@nextui-org/react";
 import { API_PATH } from "../../Path";
 import axios from "axios";
+import { getUserData } from "../../util";
 
 const DeleteEntryModal = ({
+  user,
   visible,
   closeHandler,
   setUser,
-  setShowBalanceModal,
+  setShowDeleteModal,
+  expenseID,
 }) => {
-  const [newBalance, setBalance] = useState();
-
   const deleteEntry = async () => {
     try {
-      const body = JSON.stringify({ Balance: +newBalance });
-      console.log(body);
+      console.log(expenseID, user);
+      const response = await axios.delete(`${API_PATH}/expense/${expenseID}`);
+      setShowDeleteModal(false);
 
-      const headers = {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      };
-      const response = await axios.put(
-        `${API_PATH}/user/a038c272-c533-44d0-896c-a684974b4231`,
-        body,
-        { mode: "cors" },
-        { headers }
-      );
-
-      console.log("working, response: ", response.data);
-      setUser(response.data);
-      setShowBalanceModal(false);
+      const data = await getUserData(user.User_ID);
+      setUser(data);
     } catch (error) {
       console.log(error);
     }
