@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { IoAddCircle } from "react-icons/io5";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
@@ -19,19 +19,35 @@ import AddEntryModal from "../modals/AddEntryModal";
 
 const MainDashboard = ({ user, loadingUser, setUser }) => {
   const [showBalanceModal, setShowBalanceModal] = useState(false);
+  const [showEntryModal, setShowEntryModal] = useState(false);
+
   const balanceHandler = () => setShowBalanceModal(true);
+  const entryHandler = () => setShowEntryModal(true);
 
   const closeBalanceHandler = () => {
     setShowBalanceModal(false);
     console.log("closed");
   };
-  const [showEntryModal, setShowEntryModal] = useState(false);
-  const entryHandler = () => setShowEntryModal(true);
 
   const closeEntryHandler = () => {
     setShowEntryModal(false);
     console.log("closed");
   };
+
+  // useEffect for calculating expended amount
+  const [amountExpended, setAmountExpended] = useState(2000);
+  useEffect(() => {
+    if (!loadingUser) {
+      console.log(user);
+
+      let totalAmount = 0;
+      user.Expenses.forEach((element) => {
+        totalAmount += element.expend_amount;
+      });
+
+      setAmountExpended(totalAmount);
+    }
+  }, [user]);
 
   return (
     <div className="main-dashboard">
@@ -49,7 +65,7 @@ const MainDashboard = ({ user, loadingUser, setUser }) => {
 
           {/* Amount Expended */}
           <div className="amount-expended">
-            <button type="button">₹ 2500</button>
+            <button type="button">₹ {amountExpended}</button>
             <p>Amount Expended</p>
           </div>
         </div>

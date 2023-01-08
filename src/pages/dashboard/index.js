@@ -23,6 +23,7 @@ const Dashboard = () => {
       // console.log(
       //   data.Expenses[0].CreatedAt.split("T")[0].split("-").reverse().join("-")
       // );
+
       setUser(data);
       setLoadingUser(false);
     };

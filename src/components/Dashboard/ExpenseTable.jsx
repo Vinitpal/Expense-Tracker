@@ -7,14 +7,14 @@ import UpdateEntryModal from "../modals/UpdateEntryModal";
 
 export default function ExpenseTable({ user, loadingUser, setUser }) {
   const [showEntryModal, setShowEntryModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const entryHandler = () => setShowEntryModal(true);
+  const deleteHandler = () => setShowDeleteModal(true);
 
   const closeEntryHandler = () => {
     setShowEntryModal(false);
     console.log("closed");
   };
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const deleteHandler = () => setShowDeleteModal(true);
 
   const closeDeleteHandler = () => {
     setShowDeleteModal(false);
@@ -59,13 +59,11 @@ export default function ExpenseTable({ user, loadingUser, setUser }) {
                 (a, b) => Date.parse(b.CreatedAt) - Date.parse(a.CreatedAt)
               ),
             ].map((item, key) => (
-              <Table.Row
-                css={{ textAlign: "center" }}
-                key={key}
-                onClick={() => console.log("does it work?")}
-              >
-                <Table.Cell>
-                  {item.CreatedAt.split("T")[0].split("-").reverse().join("-")}
+              <Table.Row css={{ textAlign: "center" }} key={key}>
+                <Table.Cell css={{ width: "50px" }}>
+                  {item.CreatedAt.split("T")[0].split("-").reverse().join("-") +
+                    " | " +
+                    item.CreatedAt.split("T")[1].split("+")[0]}
                 </Table.Cell>
                 <Table.Cell>{item.title}</Table.Cell>
                 <Table.Cell>

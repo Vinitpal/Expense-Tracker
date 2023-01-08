@@ -12,6 +12,11 @@
 ## dashboard
 
 - functioning of btns container area
+  - ~~update current balance~~
+  - ~~amount expended automatic calculation~~
+  - add new record
+  - update record
+  - delete record
 - functioning of tables rows
 - add graphs if time remaining
 - make it responsive
