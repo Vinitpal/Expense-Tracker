@@ -1,0 +1,47 @@
+@import "./main-dashboard.css";
+
+/* css for clear button in expense modal */
+.nextui-c-ctQnhE {
+  position: absolute;
+  right: 8px !important;
+}
+
+.nextui-table-container {
+  margin: 0 4rem 2rem;
+}
+
+.nextui-table-container .icon-btn {
+  margin: 0 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+}
+
+.nextui-table-container .icon {
+  font-size: 1.3rem;
+}
+
+.nextui-table-container .icon-btn.update .icon {
+  color: #0f9b0f;
+}
+
+.nextui-table-container .icon-btn.update:hover {
+  background-color: #0f9b0f;
+}
+
+.nextui-table-container .icon-btn.update:hover .icon {
+  color: #fff;
+}
+
+.nextui-table-container .icon-btn.delete .icon {
+  color: #f60000;
+}
+
+.nextui-table-container .icon-btn.delete:hover {
+  background-color: #f60000;
+}
+
+.nextui-table-container .icon-btn.delete:hover .icon {
+  color: #fff;
+}
