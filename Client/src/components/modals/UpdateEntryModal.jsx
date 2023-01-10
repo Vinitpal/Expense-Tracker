@@ -12,19 +12,22 @@ const UpdateEntryModal = ({
   expenseID,
   setShowEntryModal,
 }) => {
-  const [title, setTitle] = useState();
-  const [label, setLabel] = useState();
-  const [expendAmount, setExpendAmount] = useState();
-  const [expenseData, setExpenseData] = useState();
+  const [expenseData, setExpenseData] = useState({});
+  const [title, setTitle] = useState("");
+  const [label, setLabel] = useState("");
+  const [expendAmount, setExpendAmount] = useState(0);
 
-  const fetchExpenseData = async () => {
-    const data = await getExpenseData(expenseID);
+  const fetchExpenseData = async (id) => {
+    const data = await getExpenseData(id);
     console.log(data);
     setExpenseData(data);
+    setTitle(data.title);
+    setLabel(data.label);
+    setExpendAmount(data.expend_amount);
   };
 
   useEffect(() => {
-    fetchExpenseData();
+    fetchExpenseData(expenseID);
   }, [expenseID]);
 
   const updateEntry = async () => {
@@ -35,7 +38,7 @@ const UpdateEntryModal = ({
         label,
         expend_amount: +expendAmount,
       });
-      console.log(body);
+      // console.log(body);
 
       const headers = {
         "Content-Type": "application/json",
@@ -53,7 +56,7 @@ const UpdateEntryModal = ({
 
       // refetch and show updated data
       const data = await getUserData(user.User_ID);
-      fetchExpenseData();
+      fetchExpenseData(expenseID);
       setUser(data);
 
       // close modal
@@ -93,7 +96,7 @@ const UpdateEntryModal = ({
           color="primary"
           type={"text"}
           label="Title"
-          value={expenseData ? expenseData.title : "title"}
+          value={title}
         />
         {/* Enter New Label */}
         <Input
@@ -107,17 +110,18 @@ const UpdateEntryModal = ({
           color="primary"
           type={"text"}
           label="Label"
-          value={expenseData ? expenseData.label : "label"}
+          value={label}
         />
         {/* Enter Expenses */}
         <Input
+          contentEditable
           bordered
           fullWidth
           onChange={(e) => setExpendAmount(Math.abs(e.target.value))}
           color="primary"
           type={"number"}
           label="Expenses"
-          value={expenseData ? expenseData.expend_amount : "Expend Amount"}
+          value={expendAmount}
         />
       </Modal.Body>
       <Modal.Footer justify="center">
