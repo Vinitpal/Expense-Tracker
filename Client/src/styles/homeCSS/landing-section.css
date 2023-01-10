@@ -89,3 +89,74 @@
   }
 }
 /****** Wave animation css ends ******/
+/****** Media Query starts ******/
+
+/* indicates screen after 1380px i.e. for small screen desktop */
+@media screen and (max-width: 1380px) {
+  .landing-section .hero-text {
+    width: 77%;
+  }
+}
+
+/* indicates screen after 900px i.e. for tabs */
+@media screen and (max-width: 900px) {
+  .landing-section .hero-text {
+    width: 96%;
+  }
+
+  .landing-section .hero-text h2 {
+    font-size: 3.8rem;
+    line-height: 4.1rem;
+    width: 86%;
+  }
+}
+
+/* indicates screen after 600px i.e. for mobile phone */
+@media screen and (max-width: 600px) {
+  .landing-section .hero-text {
+    width: 90%;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .landing-section .hero-text h2 {
+    font-size: 2rem;
+    line-height: 2.4rem;
+    font-weight: 500;
+    width: 90%;
+  }
+
+  .landing-section .hero-text p {
+    font-size: 1rem;
+    line-height: 1.4rem;
+    color: rgba(0, 0, 0, 0.48);
+  }
+
+  .landing-section .hero-text .btn-wrapper button {
+    margin: 0;
+    margin-top: 0.5rem;
+  }
+
+  .landing-section .hero-text .btn-wrapper button.sign-up {
+    margin-right: 2rem;
+  }
+}
+
+/* indicates screen after 400px i.e. for small phone */
+@media screen and (max-width: 400px) {
+  .landing-section .hero-text .btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .landing-section .hero-text .btn-wrapper button.sign-up {
+    margin-right: 0;
+  }
+}
+
+/****** Media Query ends ******/

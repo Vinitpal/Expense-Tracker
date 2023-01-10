@@ -110,3 +110,62 @@
 }
 
 /***** Add New Record Ends *****/
+
+/***** Media Query Starts *****/
+/* indicates screen after 1380px i.e. for small screen desktop */
+@media screen and (max-width: 1380px) {
+  .main-dashboard .amount-btn-wrapper .btn-container div {
+    width: 41%;
+  }
+  .main-dashboard .amount-btn-wrapper .add-new-record {
+    width: 40%;
+  }
+}
+
+/* indicates screen after 900px i.e. for tabs */
+@media screen and (max-width: 900px) {
+  .main-dashboard .amount-btn-wrapper {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main-dashboard .amount-btn-wrapper .btn-container {
+    width: 100%;
+  }
+
+  .main-dashboard .amount-btn-wrapper .btn-container div {
+    width: 50%;
+  }
+
+  .main-dashboard .amount-btn-wrapper .add-new-record {
+    margin: 1rem 0;
+    width: 100%;
+  }
+}
+
+/* indicates screen after 600px i.e. for mobile phone */
+@media screen and (max-width: 600px) {
+  .main-dashboard .amount-btn-wrapper {
+    padding: 2rem 2rem;
+  }
+
+  .main-dashboard .amount-btn-wrapper .btn-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .main-dashboard .amount-btn-wrapper .btn-container div {
+    width: 100%;
+  }
+}
+
+/* indicates screen after 400px i.e. for small phone */
+@media screen and (max-width: 400px) {
+}
+
+/****** Media Query ends ******/

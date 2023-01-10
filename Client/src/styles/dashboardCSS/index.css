@@ -45,3 +45,9 @@
 .nextui-table-container .icon-btn.delete:hover .icon {
   color: #fff;
 }
+
+@media screen and (max-width: 600px) {
+  .nextui-table-container {
+    margin: 0 1rem 2rem;
+  }
+}

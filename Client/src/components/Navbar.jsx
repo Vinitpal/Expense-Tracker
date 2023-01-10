@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Popover } from "@nextui-org/react";
+import { AiOutlineMenu } from "react-icons/ai";
 
 function Navbar({ theme }) {
   const navigate = useNavigate();
@@ -32,6 +34,25 @@ function Navbar({ theme }) {
       <button type="button" style={btnTheme} className="login-btn">
         Login
       </button>
+      <div className="popup">
+        <Popover>
+          <Popover.Trigger>
+            <button type="button">
+              <AiOutlineMenu />
+            </button>
+          </Popover.Trigger>
+          <Popover.Content
+            css={{
+              marginRight: "1.6rem",
+              padding: "0.5rem 1rem",
+              textAlign: "center",
+            }}
+          >
+            <h3 className="mobile-nav-item">About</h3>
+            <h3 className="mobile-nav-item">Login</h3>
+          </Popover.Content>
+        </Popover>
+      </div>
     </nav>
   );
 }

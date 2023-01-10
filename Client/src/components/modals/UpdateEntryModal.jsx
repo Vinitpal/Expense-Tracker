@@ -32,13 +32,11 @@ const UpdateEntryModal = ({
 
   const updateEntry = async () => {
     try {
-      // create new expense api call
       const body = JSON.stringify({
         title,
         label,
         expend_amount: +expendAmount,
       });
-      // console.log(body);
 
       const headers = {
         "Content-Type": "application/json",
