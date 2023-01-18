@@ -45,6 +45,10 @@
   color: #fff;
 }
 
+.main-dashboard .amount-btn-wrapper .btn-container .current-balance p {
+  color: rgba(15, 155, 15, 0.75);
+}
+
 .main-dashboard
   .amount-btn-wrapper
   .btn-container
@@ -57,6 +61,10 @@
   background: #f4fbf4;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
+  color: #f60000;
+}
+
+.main-dashboard .amount-btn-wrapper .btn-container .amount-expended p {
   color: #f60000;
 }
 
@@ -164,8 +172,8 @@
   }
 }
 
-/* indicates screen after 400px i.e. for small phone */
+/* indicates screen after 400px i.e. for small phone
 @media screen and (max-width: 400px) {
-}
+} */
 
 /****** Media Query ends ******/

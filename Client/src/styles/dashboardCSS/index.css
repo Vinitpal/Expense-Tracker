@@ -7,7 +7,18 @@
 }
 
 .nextui-table-container {
-  margin: 0 4rem 2rem;
+  margin: 0 4rem 1rem;
+}
+
+.nextui-c-eKxzBn {
+  width: 20%;
+}
+
+/* expense table css starts */
+.expense-table-title {
+  font-weight: 500;
+  font-size: 1.6rem;
+  margin: 0 4rem 0.8rem;
 }
 
 .nextui-table-container .icon-btn {
@@ -46,8 +57,57 @@
   color: #fff;
 }
 
+.show-all-expenses {
+  text-align: right;
+  padding: 0 4rem;
+}
+
+.show-all-expenses p {
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-align: right;
+  stroke-width: 0px;
+  text-shadow: -0.25px -0.25px 0 transparent, 0.25px 0.25px transparent;
+}
+
+.show-all-expenses p:hover {
+  text-shadow: -0.25px -0.25px 0 #0f9b0f, 0.25px 0.25px #0f9b0f;
+  color: #0f9b0f;
+}
+
+.show-all-expenses p::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2.5px;
+  bottom: 0;
+  left: 0;
+  background-color: #0f9b0f;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.show-all-expenses p:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+@media screen and (max-width: 900px) {
+  .show-all-expenses {
+    text-align: center;
+  }
+}
+
 @media screen and (max-width: 600px) {
-  .nextui-table-container {
+  .nextui-table-container,
+  .expense-table-title {
     margin: 0 1rem 2rem;
+  }
+
+  .show-all-expenses {
+    padding: 0;
   }
 }

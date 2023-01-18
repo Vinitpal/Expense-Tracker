@@ -9,7 +9,8 @@
 
 ## dashboard
 
-- add graphs if time remaining
+- make mobile responsive more better
+- add graphs
 
 ## view all expense page
 
