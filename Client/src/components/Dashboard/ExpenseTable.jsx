@@ -2,6 +2,7 @@ import { Button, Table } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { AiFillEdit } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import { getUserData } from "../../util";
 import DeleteEntryModal from "../modals/DeleteEntryModal";
 import UpdateEntryModal from "../modals/UpdateEntryModal";
@@ -14,6 +15,8 @@ export default function ExpenseTable({ user, loadingUser, setUser }) {
   const [expenses, setExpenses] = useState(null);
   const entryHandler = () => setShowEntryModal(true);
   const deleteHandler = () => setShowDeleteModal(true);
+
+  const navigate = useNavigate();
 
   const closeEntryHandler = () => {
     setShowEntryModal(false);
@@ -139,7 +142,7 @@ export default function ExpenseTable({ user, loadingUser, setUser }) {
         setUser={setUser}
       />
       <div className="show-all-expenses">
-        <p>
+        <p onClick={() => navigate("/all-expenses")}>
           Click here to view all expenses
           <div class="arrow">
             <span></span>
