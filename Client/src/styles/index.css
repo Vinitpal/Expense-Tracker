@@ -1,5 +1,9 @@
+/* Pages css */
 @import "./homeCSS/index.css";
 @import "./dashboardCSS/index.css";
+@import "./allExpensesCSS/index.css";
+
+/* Components css */
 @import "./Navbar.css";
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");

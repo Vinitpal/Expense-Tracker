@@ -1,0 +1,38 @@
+.all-expenses .filter-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.all-expenses .filter-menu h2 {
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.all-expenses .filter-buttons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.all-expenses .filter-buttons button {
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.all-expenses .filter-buttons button:hover {
+  box-shadow: rgba(99, 99, 99, 0.6) 0px 2px 8px 0px;
+}
+
+.all-expenses .filter-buttons button .icon {
+  margin-left: 7px;
+  font-size: 1.2rem;
+}
