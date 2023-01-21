@@ -1,25 +1,24 @@
+// react
 import React from "react";
-import { Modal, Button, Text } from "@nextui-org/react";
 import { API_PATH } from "../../Path";
-import axios from "axios";
-import { getUserData } from "../../util";
+import { useAppContext } from "../../context/state";
 
-const DeleteEntryModal = ({
-  user,
-  visible,
-  closeHandler,
-  setUser,
-  setShowDeleteModal,
-  expenseID,
-}) => {
+// library
+import axios from "axios";
+import { Modal, Button, Text } from "@nextui-org/react";
+
+const DeleteEntryModal = ({ visible, closeHandler, expenseID }) => {
+  const { setUser, fetchUser } = useAppContext();
+
   const deleteEntry = async () => {
     try {
-      console.log(expenseID, user);
+      console.log(expenseID);
       const response = await axios.delete(`${API_PATH}/expense/${expenseID}`);
-      setShowDeleteModal(false);
 
-      const data = await getUserData(user.User_ID);
+      const data = await fetchUser();
       setUser(data);
+
+      closeHandler();
     } catch (error) {
       console.log(error);
     }

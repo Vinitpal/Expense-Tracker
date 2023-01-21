@@ -1,26 +1,21 @@
+// react
 import React, { useEffect, useState } from "react";
-import { Modal, Input, Button, Text } from "@nextui-org/react";
 import { API_PATH } from "../../Path";
-import axios from "axios";
-import { getExpenseData, getUserData } from "../../util";
+import { useAppContext } from "../../context/state";
 
-const UpdateEntryModal = ({
-  user,
-  setUser,
-  visible,
-  closeHandler,
-  expenseID,
-  setShowEntryModal,
-}) => {
-  const [expenseData, setExpenseData] = useState({});
+// library
+import axios from "axios";
+import { Modal, Input, Button, Text } from "@nextui-org/react";
+
+const UpdateEntryModal = ({ visible, closeHandler, expenseID }) => {
   const [title, setTitle] = useState("");
   const [label, setLabel] = useState("");
   const [expendAmount, setExpendAmount] = useState(0);
+  const { setUser, fetchUser, fetchExpense } = useAppContext();
 
   const fetchExpenseData = async (id) => {
-    const data = await getExpenseData(id);
+    const data = await fetchExpense(id);
     console.log(data);
-    setExpenseData(data);
     setTitle(data.title);
     setLabel(data.label);
     setExpendAmount(data.expend_amount);
@@ -53,12 +48,12 @@ const UpdateEntryModal = ({
       console.log("working, response: ", response.data);
 
       // refetch and show updated data
-      const data = await getUserData(user.User_ID);
+      const data = await fetchUser();
       fetchExpenseData(expenseID);
       setUser(data);
 
       // close modal
-      setShowEntryModal(false);
+      closeHandler();
     } catch (error) {
       console.log(error);
     }

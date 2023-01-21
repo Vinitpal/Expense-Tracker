@@ -1,32 +1,38 @@
-import { Button, Table } from "@nextui-org/react";
+// react
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../context/state";
+
+// library
+import { Button, Table } from "@nextui-org/react";
+
+// icons
 import { AiFillDelete } from "react-icons/ai";
 import { AiFillEdit } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
-import { getUserData } from "../../util";
+
+// components
 import DeleteEntryModal from "../modals/DeleteEntryModal";
 import UpdateEntryModal from "../modals/UpdateEntryModal";
 
-export default function ExpenseTable({ user, loadingUser, setUser }) {
+const ExpenseTable = () => {
   const [showEntryModal, setShowEntryModal] = useState(false);
+  const entryHandler = () => setShowEntryModal(true);
+  const closeEntryHandler = () => {
+    setShowEntryModal(false);
+  };
+
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const deleteHandler = () => setShowDeleteModal(true);
+  const closeDeleteHandler = () => {
+    setShowDeleteModal(false);
+  };
+
   const [selectedID, setSelectedID] = useState(null);
   const [loading, setLoading] = useState(true);
   const [expenses, setExpenses] = useState(null);
-  const entryHandler = () => setShowEntryModal(true);
-  const deleteHandler = () => setShowDeleteModal(true);
+  const { user, loadingUser } = useAppContext();
 
   const navigate = useNavigate();
-
-  const closeEntryHandler = () => {
-    setShowEntryModal(false);
-    console.log("closed");
-  };
-
-  const closeDeleteHandler = () => {
-    setShowDeleteModal(false);
-    console.log("closed");
-  };
 
   useEffect(() => {
     // calculating today's expenses
@@ -125,32 +131,26 @@ export default function ExpenseTable({ user, loadingUser, setUser }) {
           )}
         </Table.Body>
       </Table>
+
       <UpdateEntryModal
         visible={showEntryModal}
         closeHandler={closeEntryHandler}
-        setShowEntryModal={setShowEntryModal}
         expenseID={selectedID}
-        user={user}
-        setUser={setUser}
       />
+
       <DeleteEntryModal
         visible={showDeleteModal}
         closeHandler={closeDeleteHandler}
-        setShowDeleteModal={setShowDeleteModal}
         expenseID={selectedID}
-        user={user}
-        setUser={setUser}
       />
+
       <div className="show-all-expenses">
         <p onClick={() => navigate("/all-expenses")}>
           Click here to view all expenses
-          <div class="arrow">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
         </p>
       </div>
     </>
   );
-}
+};
+
+export default ExpenseTable;

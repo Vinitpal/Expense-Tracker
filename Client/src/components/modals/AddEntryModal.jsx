@@ -1,19 +1,18 @@
-import React, { useState } from "react";
-import { Modal, Input, Button, Text } from "@nextui-org/react";
+// react
 import { API_PATH } from "../../Path";
-import axios from "axios";
-import { getUserData } from "../../util";
+import React, { useState } from "react";
+import { useAppContext } from "../../context/state";
 
-const AddEntryModal = ({
-  user,
-  setUser,
-  visible,
-  closeHandler,
-  setShowEntryModal,
-}) => {
+// library
+import axios from "axios";
+import { Modal, Input, Button, Text } from "@nextui-org/react";
+
+const AddEntryModal = ({ visible, closeHandler }) => {
   const [title, setTitle] = useState();
   const [label, setLabel] = useState();
   const [expendAmount, setExpendAmount] = useState();
+
+  const { user, setUser, fetchUser } = useAppContext();
 
   const addEntry = async () => {
     try {
@@ -22,7 +21,6 @@ const AddEntryModal = ({
         title,
         label,
         expend_amount: +expendAmount,
-
         User_ID: user.User_ID,
       });
       console.log(body);
@@ -42,11 +40,11 @@ const AddEntryModal = ({
       console.log("working, response: ", response.data);
 
       // refetch and show updated data
-      const data = await getUserData(user.User_ID);
+      const data = await fetchUser();
       setUser(data);
 
       // close modal
-      setShowEntryModal(false);
+      closeHandler();
     } catch (error) {
       console.log(error);
     }

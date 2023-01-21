@@ -1,16 +1,18 @@
+// react
 import React, { useState } from "react";
-import { Modal, Input, Button, Text } from "@nextui-org/react";
-import { HiOutlineCurrencyRupee } from "react-icons/hi";
+import { useAppContext } from "../../context/state";
 import { API_PATH } from "../../Path";
-import axios from "axios";
 
-const UpdateBalanceModal = ({
-  visible,
-  closeHandler,
-  setUser,
-  setShowBalanceModal,
-}) => {
+// icons
+import { HiOutlineCurrencyRupee } from "react-icons/hi";
+
+// library
+import axios from "axios";
+import { Modal, Input, Button, Text } from "@nextui-org/react";
+
+const UpdateBalanceModal = ({ visible, closeHandler }) => {
   const [newBalance, setBalance] = useState();
+  const { setUser } = useAppContext();
 
   const updateCurrentBalance = async () => {
     try {
@@ -30,7 +32,7 @@ const UpdateBalanceModal = ({
 
       console.log("working, response: ", response.data);
       setUser(response.data);
-      setShowBalanceModal(false);
+      closeHandler();
     } catch (error) {
       console.log(error);
     }

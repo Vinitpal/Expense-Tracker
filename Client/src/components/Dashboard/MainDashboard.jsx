@@ -1,25 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { FiEdit } from "react-icons/fi";
 import { IoAddCircle } from "react-icons/io5";
-import { HiOutlineCurrencyRupee } from "react-icons/hi";
 import { AiFillEdit } from "react-icons/ai";
-import {
-  Modal,
-  Grid,
-  Input,
-  Row,
-  Checkbox,
-  Button,
-  Text,
-} from "@nextui-org/react";
 import UpdateBalanceModal from "../modals/UpdateBalanceModal";
 import AddEntryModal from "../modals/AddEntryModal";
-// import { API_PATH } from "../../Path";
-// import axios from "axios";
+import { useAppContext } from "../../context/state";
 
-const MainDashboard = ({ user, loadingUser, setUser }) => {
+const MainDashboard = () => {
   const [showBalanceModal, setShowBalanceModal] = useState(false);
   const [showEntryModal, setShowEntryModal] = useState(false);
+  const { user, loadingUser } = useAppContext();
 
   const balanceHandler = () => setShowBalanceModal(true);
   const entryHandler = () => setShowEntryModal(true);
@@ -79,16 +68,11 @@ const MainDashboard = ({ user, loadingUser, setUser }) => {
         <UpdateBalanceModal
           visible={showBalanceModal}
           closeHandler={closeBalanceHandler}
-          setShowBalanceModal={setShowBalanceModal}
-          setUser={setUser}
         />
 
         <AddEntryModal
           visible={showEntryModal}
           closeHandler={closeEntryHandler}
-          setShowEntryModal={setShowEntryModal}
-          user={user}
-          setUser={setUser}
         />
       </div>
     </div>

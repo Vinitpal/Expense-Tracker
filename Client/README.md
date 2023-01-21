@@ -16,6 +16,11 @@
 
 - show expenses according to the date
 
+## other functions
+
+- check out the aria-label issue
+- add context api for less lines of code
+
 # --- DONE ---
 
 - navbar
