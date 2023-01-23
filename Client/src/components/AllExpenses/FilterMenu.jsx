@@ -15,22 +15,21 @@ import { AiOutlineCalendar } from "react-icons/ai";
 import { MdLabelOutline } from "react-icons/md";
 import { BiCoinStack } from "react-icons/bi";
 
-const FilterMenu = () => {
-  // approach -- TODO : priority-- done
-  // next priority is to get the table component and create some dummy data for testing
+const FilterMenu = ({ currentMonth, setCurrentMonth }) => {
+  // approach -- TODO :done
   // click on any buttons opens a modal
   // which allow to select filtering way
 
   const [currentLabel, setCurrentLabel] = useState("");
   const [currentPriceRange, setCurrentPriceRange] = useState("");
 
-  // setting default month
-  const [currentMonth, setCurrentMonth] = useState("");
-  useEffect(() => {
-    const month = moment().format("MMMM");
-    console.log(month);
-    setCurrentMonth(month);
-  }, []);
+  // // setting default month
+  // const [currentMonth, setCurrentMonth] = useState("");
+  // useEffect(() => {
+  //   const month = moment().format("MMMM");
+  //   console.log(month);
+  //   setCurrentMonth(month);
+  // }, []);
 
   // modals state handlers
   const [showDateModal, setShowDateModal] = useState(false);

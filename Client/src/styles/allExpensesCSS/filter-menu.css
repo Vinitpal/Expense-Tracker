@@ -2,13 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0 4rem 1.2rem;
 }
 
 .all-expenses .filter-menu h2 {
   font-size: 1.6rem;
   font-weight: 400;
-  margin: 0;
-  color: rgba(0, 0, 0, 0.6);
+  /* color: rgba(0, 0, 0, 0.6); */
 }
 
 .all-expenses .filter-buttons {

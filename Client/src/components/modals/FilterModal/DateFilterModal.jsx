@@ -5,6 +5,7 @@ import { useAppContext } from "../../../context/state";
 // library
 import moment from "moment";
 import { Modal, Button, Text } from "@nextui-org/react";
+import { allMonths } from "../../../util";
 
 const DateFilterModal = ({
   visible,
@@ -13,21 +14,6 @@ const DateFilterModal = ({
   setCurrentMonth,
 }) => {
   const { fetchUser } = useAppContext();
-
-  const allMonths = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
 
   const filterDate = async () => {
     // -> default month selected would be current month

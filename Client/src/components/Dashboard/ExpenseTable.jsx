@@ -64,6 +64,7 @@ const ExpenseTable = () => {
         }}
         selectionMode="single"
         aria-label="Table for expenses by the user"
+        className="expense-table-container"
       >
         <Table.Header>
           <Table.Column align="center">TIME</Table.Column>

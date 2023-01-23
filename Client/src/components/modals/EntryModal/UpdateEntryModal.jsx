@@ -15,7 +15,7 @@ const UpdateEntryModal = ({ visible, closeHandler, expenseID }) => {
 
   const fetchExpenseData = async (id) => {
     const data = await fetchExpense(id);
-    console.log(data);
+    // console.log(data);
     setTitle(data.title);
     setLabel(data.label);
     setExpendAmount(data.expend_amount);
