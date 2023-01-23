@@ -1,7 +1,7 @@
 // react
 import React from "react";
-import { API_PATH } from "../../Path";
-import { useAppContext } from "../../context/state";
+import { API_PATH } from "../../../Path";
+import { useAppContext } from "../../../context/state";
 
 // library
 import axios from "axios";

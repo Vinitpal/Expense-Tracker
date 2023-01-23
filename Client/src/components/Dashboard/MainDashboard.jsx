@@ -1,9 +1,14 @@
+// react
 import React, { useEffect, useState } from "react";
+import { useAppContext } from "../../context/state";
+
+// components
+import UpdateBalanceModal from "../modals/UpdateBalanceModal";
+import AddEntryModal from "../modals/EntryModal/AddEntryModal";
+
+// icons
 import { IoAddCircle } from "react-icons/io5";
 import { AiFillEdit } from "react-icons/ai";
-import UpdateBalanceModal from "../modals/UpdateBalanceModal";
-import AddEntryModal from "../modals/AddEntryModal";
-import { useAppContext } from "../../context/state";
 
 const MainDashboard = () => {
   const [showBalanceModal, setShowBalanceModal] = useState(false);

@@ -1,30 +1,90 @@
-import React from "react";
-import { BsCalendarMonth } from "react-icons/bs";
-import { MdLabelOutline } from "react-icons/md";
-import { BiCoinStack } from "react-icons/bi";
+// react
+import React, { useEffect, useState } from "react";
 import { useAppContext } from "../../context/state";
 
+// librarys
+import moment from "moment";
+
+// components
+import DateFilterModal from "../modals/FilterModal/DateFilterModal";
+import LabelFilterModal from "../modals/FilterModal/LabelFilterModal";
+import PriceFilterModal from "../modals/FilterModal/PriceFilterModal";
+
+// icons
+import { AiOutlineCalendar } from "react-icons/ai";
+import { MdLabelOutline } from "react-icons/md";
+import { BiCoinStack } from "react-icons/bi";
+
 const FilterMenu = () => {
-  // approach -- TODO
+  // approach -- TODO : priority-- done
+  // next priority is to get the table component and create some dummy data for testing
   // click on any buttons opens a modal
   // which allow to select filtering way
-  const { console } = useAppContext();
+
+  const [currentLabel, setCurrentLabel] = useState("");
+  const [currentPriceRange, setCurrentPriceRange] = useState("");
+
+  // setting default month
+  const [currentMonth, setCurrentMonth] = useState("");
+  useEffect(() => {
+    const month = moment().format("MMMM");
+    console.log(month);
+    setCurrentMonth(month);
+  }, []);
+
+  // modals state handlers
+  const [showDateModal, setShowDateModal] = useState(false);
+  const dateHandler = () => setShowDateModal(true);
+  const closeDateHandler = () => {
+    setShowDateModal(false);
+  };
+  const [showLabelModal, setShowLabelModal] = useState(false);
+  const labelHandler = () => setShowLabelModal(true);
+  const closeLabelHandler = () => {
+    setShowLabelModal(false);
+  };
+  const [showPriceModal, setShowPriceModal] = useState(false);
+  const priceHandler = () => setShowPriceModal(true);
+  const closePriceHandler = () => {
+    setShowPriceModal(false);
+  };
 
   return (
     <div className="filter-menu">
       <h2>Your Expenses</h2>
 
       <div className="filter-buttons">
-        <button className="month" onClick={() => console("context working??")}>
-          November <BsCalendarMonth className="icon" />
+        <button className="month" onClick={dateHandler}>
+          {currentMonth} <AiOutlineCalendar className="icon" />
         </button>
-        <button className="label">
-          Label <MdLabelOutline className="icon" />
+        <button className="label" onClick={labelHandler}>
+          {currentLabel ? currentLabel : "Label"}
+          <MdLabelOutline className="icon" />
         </button>
-        <button className="price">
-          Price Range <BiCoinStack className="icon" />
+        <button className="price" onClick={priceHandler}>
+          {currentPriceRange ? currentPriceRange : "Price Range"}
+          <BiCoinStack className="icon" />
         </button>
       </div>
+
+      <DateFilterModal
+        currentMonth={currentMonth}
+        setCurrentMonth={setCurrentMonth}
+        visible={showDateModal}
+        closeHandler={closeDateHandler}
+      />
+      <LabelFilterModal
+        currentLabel={currentLabel}
+        setCurrentLabel={setCurrentLabel}
+        visible={showLabelModal}
+        closeHandler={closeLabelHandler}
+      />
+      <PriceFilterModal
+        currentPriceRange={currentPriceRange}
+        setCurrentPriceRange={setCurrentPriceRange}
+        visible={showPriceModal}
+        closeHandler={closePriceHandler}
+      />
     </div>
   );
 };

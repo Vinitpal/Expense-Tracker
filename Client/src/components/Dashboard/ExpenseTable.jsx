@@ -11,8 +11,8 @@ import { AiFillDelete } from "react-icons/ai";
 import { AiFillEdit } from "react-icons/ai";
 
 // components
-import DeleteEntryModal from "../modals/DeleteEntryModal";
-import UpdateEntryModal from "../modals/UpdateEntryModal";
+import DeleteEntryModal from "../modals/EntryModal/DeleteEntryModal";
+import UpdateEntryModal from "../modals/EntryModal/UpdateEntryModal";
 
 const ExpenseTable = () => {
   const [showEntryModal, setShowEntryModal] = useState(false);

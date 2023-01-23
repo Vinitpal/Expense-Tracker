@@ -19,6 +19,7 @@
 ## other functions
 
 - check out the aria-label issue
+- can use tooltip in various places
 - add context api for less lines of code
 
 # --- DONE ---
