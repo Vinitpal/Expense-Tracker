@@ -15,7 +15,8 @@ import DeleteEntryModal from "../modals/EntryModal/DeleteEntryModal";
 import UpdateEntryModal from "../modals/EntryModal/UpdateEntryModal";
 
 const FilterTable = ({ user, expenses, loadingUser }) => {
-  console.log("checking table", user, loadingUser);
+  // console.log("checking table", user, expenses, loadingUser);
+
   const [showEntryModal, setShowEntryModal] = useState(false);
   const entryHandler = () => setShowEntryModal(true);
   const closeEntryHandler = () => {
@@ -30,25 +31,25 @@ const FilterTable = ({ user, expenses, loadingUser }) => {
 
   const [selectedID, setSelectedID] = useState(null);
 
-  useEffect(() => {
-    expenses.map((expenseItem, idx) =>
-      [...user.Expenses]
-        .sort((a, b) => Date.parse(b.CreatedAt) - Date.parse(a.CreatedAt))
-        .filter((item) => {
-          console.log(
-            "check",
-            expenseItem.CreatedAt.split("T")[0],
-            item.CreatedAt.split("T")[0]
-          );
-          return (
-            expenseItem.CreatedAt.split("T")[0] === item.CreatedAt.split("T")[0]
-          );
-        })
-        .map((item, key) => {
-          console.log(key);
-        })
-    );
-  }, []);
+  // useEffect(() => {
+  //   expenses.map((expenseItem, idx) =>
+  //     [...user.Expenses]
+  //       .sort((a, b) => Date.parse(b.CreatedAt) - Date.parse(a.CreatedAt))
+  //       .filter((item) => {
+  //         console.log(
+  //           "check",
+  //           expenseItem.CreatedAt.split("T")[0],
+  //           item.CreatedAt.split("T")[0]
+  //         );
+  //         return (
+  //           expenseItem.CreatedAt.split("T")[0] === item.CreatedAt.split("T")[0]
+  //         );
+  //       })
+  //       .map((item, key) => {
+  //         console.log(key);
+  //       })
+  //   );
+  // }, []);
 
   return (
     <>
@@ -58,7 +59,7 @@ const FilterTable = ({ user, expenses, loadingUser }) => {
             style={{ color: "rgba(0, 0, 0, 0.6)" }}
             className="expense-table-title"
           >
-            {expenseItem.CreatedAt.split("T")[0].split("-").reverse().join("-")}
+            {expenseItem.date}
           </h2>
           <Table
             bordered
@@ -88,55 +89,39 @@ const FilterTable = ({ user, expenses, loadingUser }) => {
                   <Table.Cell> </Table.Cell>
                 </Table.Row>
               ) : (
-                [...user.Expenses]
-                  .sort(
-                    (a, b) => Date.parse(b.CreatedAt) - Date.parse(a.CreatedAt)
-                  )
-                  .filter(
-                    (item) =>
-                      expenseItem.CreatedAt.split("T")[0] ===
-                      item.CreatedAt.split("T")[0]
-                  )
-                  .map((item, key) => (
-                    <Table.Row css={{ textAlign: "center" }} key={key}>
-                      {/* {console.log(
-                        expenseItem.CreatedAt.split("T")[0],
-                        item.CreatedAt.split("T")[0],
-
-                        expenseItem.CreatedAt.split("T")[0] ===
-                          item.CreatedAt.split("T")[0]
-                      )} */}
-                      <Table.Cell>{item.title}</Table.Cell>
-                      <Table.Cell>
-                        <Button css={{ display: "inline" }} color="primary">
-                          {item.label}
-                        </Button>
-                      </Table.Cell>
-                      <Table.Cell>{item.expend_amount}</Table.Cell>
-                      <Table.Cell>
-                        <button
-                          type="button"
-                          className="icon-btn update"
-                          onClick={() => {
-                            setSelectedID(item.Expense_ID);
-                            entryHandler();
-                          }}
-                        >
-                          <AiFillEdit className="icon" />
-                        </button>
-                        <button
-                          type="button"
-                          className="icon-btn delete"
-                          onClick={() => {
-                            setSelectedID(item.Expense_ID);
-                            deleteHandler();
-                          }}
-                        >
-                          <AiFillDelete className="icon" />
-                        </button>
-                      </Table.Cell>
-                    </Table.Row>
-                  ))
+                [...expenseItem.Expenses].map((item, key) => (
+                  <Table.Row css={{ textAlign: "center" }} key={key}>
+                    <Table.Cell>{item.title}</Table.Cell>
+                    <Table.Cell>
+                      <Button css={{ display: "inline" }} color="primary">
+                        {item.label}
+                      </Button>
+                    </Table.Cell>
+                    <Table.Cell>{item.expend_amount}</Table.Cell>
+                    <Table.Cell>
+                      <button
+                        type="button"
+                        className="icon-btn update"
+                        onClick={() => {
+                          setSelectedID(item.Expense_ID);
+                          entryHandler();
+                        }}
+                      >
+                        <AiFillEdit className="icon" />
+                      </button>
+                      <button
+                        type="button"
+                        className="icon-btn delete"
+                        onClick={() => {
+                          setSelectedID(item.Expense_ID);
+                          deleteHandler();
+                        }}
+                      >
+                        <AiFillDelete className="icon" />
+                      </button>
+                    </Table.Cell>
+                  </Table.Row>
+                ))
               )}
             </Table.Body>
           </Table>
