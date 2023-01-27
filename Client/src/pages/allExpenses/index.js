@@ -7,123 +7,83 @@ import { useAppContext } from "../../context/state";
 import { allMonths } from "../../util";
 
 const AllExpenses = () => {
-  // ------- approach -- TODO :priority
-  // -> get user object
-  // -> setup loader
-  // -> once loading finishes, filter the expenses
-  //    according to current year and month
-  // -> show each day's data individually
+  // ------- approach -- TODO
   // -> checkout how pagination works in next ui table
 
   const { user, loadingUser } = useAppContext();
   const [filterArr, setFilterArr] = useState([]);
 
-  // setting default month
   const [currentMonth, setCurrentMonth] = useState("");
+  const [currentLabel, setCurrentLabel] = useState("");
+
+  // setting default month
   useEffect(() => {
     const month = moment().format("MMMM");
-    // console.log(month);
     setCurrentMonth(month);
   }, []);
 
   useEffect(() => {
-    // console.log("filtering", user);
+    console.log("filtering", user);
     if (!loadingUser) {
-      // const index = user.Expenses[0]
+      // filtering according to month
       let expenses = user.Expenses.filter(
-        (item, idx) =>
+        (item) =>
           item.CreatedAt.split("T")[0].split("-")[1] - 1 ===
           allMonths.indexOf(currentMonth)
       );
 
-      expenses = expenses
-        .filter((item, idx) => {
-          if (idx !== expenses.length - 1) {
-            return (
-              expenses[idx].CreatedAt.split("T")[0] !==
-              expenses[idx + 1].CreatedAt.split("T")[0]
-            );
-          }
-          return true;
-        })
-        .sort((a, b) => Date.parse(b.CreatedAt) - Date.parse(a.CreatedAt));
+      // TODO: priority focus on filter label
+      // things like label api and allowing user to get a dropdown of labels
+      // and create a new label
+      // and some shit like color ful label
+      if (currentLabel) {
+        expenses = expenses.filter(
+          (item) => item.label.toLowerCase() === currentLabel.toLowerCase()
+        );
+      }
 
-      let expenseArr = [];
+      const expenseArr = dateSortExpenses(expenses);
 
-      expenses.forEach((element, idx) => {
-        // console.log(expenses[idx - 1], element);
-        let obj = {
-          date: element.CreatedAt.split("T")[0],
-          Expenses: [element],
-        };
-
-        // adding same date values
-
-        if (
-          idx > 0 &&
-          element.CreatedAt.split("T")[0] ===
-            expenses[idx - 1].CreatedAt.split("T")[0]
-        ) {
-          obj = {
-            date: element.CreatedAt.split("T")[0],
-            Expenses: [element, expenses[idx - 1]],
-          };
-
-          expenseArr.forEach((item) => {
-            if (item.date === obj.date) {
-              item.Expenses = obj.Expenses;
-            }
-          });
-        } else {
-          expenseArr.push(obj);
-        }
-      });
-      console.log(expenseArr);
-
-      // doubt if two entries have same date then they should be combined
-      // thanks to above doubt its a pain showing expenses according to same date
-      // two options
-      // -> may be i can solve this with help of api
-      // -> or may be i can just go with old school way of only filtering with month
-      // ask for suggestion
-      // --> cleared the doubt myself
-      // --> no need to go over two options atm
-      // tomorrow todo: review whats done and cleanup of code
-      // reviewed just now and thing i thought was working, isnot working at all
-      // i have rethink the approach
-      // i need to create a filterArr something like this
-      // [
-      //  {
-      //   CreatedAt: 2023-01-23,
-      //   Expenses: [
-      //     {...},
-      //     {...},
-      //     {...},
-      //   ]
-      //  },
-      //  {
-      //   CreatedAt: 2023-01-10,
-      //   Expenses: [
-      //     {...},
-      //     {...},
-      //     {...},
-      //   ]
-      //  }
-      // ]
-      // I've got the date sorted out, all I need to work upon is expenses field
-      // i guess i will need to use the user object for it, and bunch of filter thingies
-      // will see tmrw gn
-      // console.log(
-      //   user.Expenses[0].CreatedAt.split("T")[0].split("-")[1] - 1,
-      //   allMonths[new Date().getMonth()],
-      //   allMonths.indexOf(currentMonth),
-      //   expenses,
-      //   user.Expenses.length,
-      //   expenseArr
-      // );
+      console.log(expenses, expenseArr);
       setFilterArr(expenseArr);
     }
-  }, [user, currentMonth]);
+  }, [user, currentMonth, currentLabel]);
+
+  const dateSortExpenses = (expenses) => {
+    // sorting the arr
+    expenses = expenses.sort(
+      (a, b) => Date.parse(b.CreatedAt) - Date.parse(a.CreatedAt)
+    );
+
+    let expenseArr = [];
+    // creating expense arr with [{date, expenses}]
+    expenses.forEach((element, idx) => {
+      let obj = {
+        date: element.CreatedAt.split("T")[0],
+        Expenses: [element],
+      };
+
+      if (
+        idx > 0 &&
+        element.CreatedAt.split("T")[0] ===
+          expenses[idx - 1].CreatedAt.split("T")[0]
+      ) {
+        obj = {
+          date: element.CreatedAt.split("T")[0],
+          Expenses: [element, expenses[idx - 1]],
+        };
+
+        expenseArr.forEach((item) => {
+          if (item.date === obj.date) item.Expenses = obj.Expenses;
+        });
+      } else {
+        expenseArr.push(obj);
+      }
+    });
+
+    console.log(expenses, expenseArr);
+    return expenseArr;
+  };
 
   return (
     <div>
@@ -132,7 +92,9 @@ const AllExpenses = () => {
       <section className="all-expenses">
         <FilterMenu
           currentMonth={currentMonth}
+          currentLabel={currentLabel}
           setCurrentMonth={setCurrentMonth}
+          setCurrentLabel={setCurrentLabel}
         />
 
         <FilterTable
