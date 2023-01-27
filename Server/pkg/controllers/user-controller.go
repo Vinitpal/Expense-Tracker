@@ -27,17 +27,6 @@ func GetAllUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetUserById(w http.ResponseWriter, r *http.Request) {
-	// // Set Headers
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, PATCH, DELETE, OPTIONS")
-	// w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
-	// w.Header().Set("Content-Type", "application/json")
-
-	// if r.Method == "OPTIONS" {
-	// 	w.WriteHeader(204)
-	// 	return
-	// }
-	// Getting Id from the params
 	vars := mux.Vars(r)
 	userId := vars["userId"]
 
@@ -94,9 +83,9 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	utils.ParseBody(r, newInfo)
 
 	vars := mux.Vars(r)
-	expenseId := vars["userId"]
+	userId := vars["userId"]
 
-	oldInfo, db := models.GetUserById(expenseId)
+	oldInfo, db := models.GetUserById(userId)
 
 	if newInfo.User_ID != uuid.Nil {
 		oldInfo.User_ID = newInfo.User_ID

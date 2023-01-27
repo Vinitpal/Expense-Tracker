@@ -14,6 +14,7 @@ func main() {
 	r := mux.NewRouter()
 	routes.ExpenseRoute(r)
 	routes.UserRoute(r)
+	routes.LabelRoute(r)
 
 	http.Handle("/", r)
 	fmt.Printf("Started server at port 8080\n")

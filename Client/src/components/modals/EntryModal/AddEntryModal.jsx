@@ -82,6 +82,7 @@ const AddEntryModal = ({ visible, closeHandler }) => {
           label="Title"
           placeholder="Enter new title"
         />
+
         {/* Enter New Label */}
         <Input
           bordered

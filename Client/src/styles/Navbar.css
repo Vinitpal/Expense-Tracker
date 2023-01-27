@@ -12,6 +12,7 @@ nav h3.about {
   font-size: 1.6rem;
   line-height: 1.9rem;
   color: #000;
+  cursor: pointer;
 }
 
 nav h2.logo {

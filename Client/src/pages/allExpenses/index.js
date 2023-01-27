@@ -87,7 +87,7 @@ const AllExpenses = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar showDashboard={true} />
 
       <section className="all-expenses">
         <FilterMenu

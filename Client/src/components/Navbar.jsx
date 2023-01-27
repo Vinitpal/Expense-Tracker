@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Popover } from "@nextui-org/react";
 import { AiOutlineMenu } from "react-icons/ai";
 
-function Navbar({ theme }) {
+function Navbar({ theme, showDashboard }) {
   const navigate = useNavigate();
 
   const aboutTheme =
@@ -25,9 +25,19 @@ function Navbar({ theme }) {
 
   return (
     <nav>
-      <h3 className="about" style={aboutTheme}>
-        About
-      </h3>
+      {showDashboard ? (
+        <h3
+          className="about"
+          style={aboutTheme}
+          onClick={() => navigate("/dashboard")}
+        >
+          Dashboard
+        </h3>
+      ) : (
+        <h3 className="about" style={aboutTheme}>
+          About
+        </h3>
+      )}
       <h2 className="logo" style={logoTheme} onClick={() => navigate("/")}>
         Kha₹che
       </h2>
