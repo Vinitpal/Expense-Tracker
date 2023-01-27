@@ -14,9 +14,13 @@ const MainDashboard = () => {
   const [showBalanceModal, setShowBalanceModal] = useState(false);
   const [showEntryModal, setShowEntryModal] = useState(false);
   const { user, loadingUser } = useAppContext();
+  const [label, setLabel] = useState("Select a label");
 
   const balanceHandler = () => setShowBalanceModal(true);
-  const entryHandler = () => setShowEntryModal(true);
+  const entryHandler = () => {
+    setShowEntryModal(true);
+    setLabel("Select a label");
+  };
 
   const closeBalanceHandler = () => {
     setShowBalanceModal(false);
@@ -78,6 +82,8 @@ const MainDashboard = () => {
         <AddEntryModal
           visible={showEntryModal}
           closeHandler={closeEntryHandler}
+          label={label}
+          setLabel={setLabel}
         />
       </div>
     </div>

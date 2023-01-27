@@ -6,6 +6,7 @@ const AppContext = createContext();
 export function AppWrapper({ children }) {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState([]);
+  const [labelArr, setLabelArr] = useState([]);
   const [userID, setUserID] = useState("a038c272-c533-44d0-896c-a684974b4231");
   // TODO: setup create new user function
   // two methods
@@ -35,6 +36,14 @@ export function AppWrapper({ children }) {
     return data;
   };
 
+  const fetchLabel = async (id) => {
+    const res = id
+      ? await fetch(`${API_PATH}/label/${id}`)
+      : await fetch(`${API_PATH}/label`);
+    const data = await res.json();
+    return data;
+  };
+
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
@@ -42,7 +51,11 @@ export function AppWrapper({ children }) {
       const data = await fetchUser();
       console.log(data);
 
+      const labelData = await fetchLabel();
+      console.log(labelData);
+
       setUser(data);
+      setLabelArr(labelData);
       setLoading(false);
     };
 
@@ -54,9 +67,12 @@ export function AppWrapper({ children }) {
     userID,
     user,
     setUser,
+    labelArr,
+    setLabelArr,
 
     fetchUser,
     fetchExpense,
+    fetchLabel,
 
     loadingUser: loading,
     setoadingUser: setLoading,

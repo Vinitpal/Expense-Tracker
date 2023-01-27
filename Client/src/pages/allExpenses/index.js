@@ -35,7 +35,8 @@ const AllExpenses = () => {
       // TODO: priority focus on filter label
       // things like label api and allowing user to get a dropdown of labels
       // and create a new label
-      // and some shit like color ful label
+      // and some shit like color ful label <---
+      // after this sort acc to label
       if (currentLabel) {
         expenses = expenses.filter(
           (item) => item.label.toLowerCase() === currentLabel.toLowerCase()

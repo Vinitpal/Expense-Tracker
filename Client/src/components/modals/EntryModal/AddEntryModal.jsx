@@ -5,21 +5,25 @@ import { useAppContext } from "../../../context/state";
 
 // library
 import axios from "axios";
-import { Modal, Input, Button, Text } from "@nextui-org/react";
+import { Modal, Input, Button, Text, Dropdown } from "@nextui-org/react";
+import { capitalize } from "../../../util";
 
-const AddEntryModal = ({ visible, closeHandler }) => {
+const AddEntryModal = ({ visible, closeHandler, label, setLabel }) => {
   const [title, setTitle] = useState();
-  const [label, setLabel] = useState();
+  const [newLabel, setNewLabel] = useState("");
   const [expendAmount, setExpendAmount] = useState();
 
-  const { user, setUser, fetchUser } = useAppContext();
+  const { user, setUser, fetchUser, labelArr, setLabelArr, fetchLabel } =
+    useAppContext();
+
+  console.log(label.currentKey);
 
   const addEntry = async () => {
     try {
       // create new expense api call
       const body = JSON.stringify({
         title,
-        label,
+        label: label.currentKey === "AddLabel" ? newLabel : label.currentKey,
         expend_amount: +expendAmount,
         User_ID: user.User_ID,
       });
@@ -29,6 +33,17 @@ const AddEntryModal = ({ visible, closeHandler }) => {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
       };
+
+      if (newLabel !== "") {
+        const createLabel = await axios.post(
+          `${API_PATH}/label`,
+          JSON.stringify({ name: newLabel }),
+          { mode: "cors" },
+          { headers }
+        );
+        console.log("working, response: ", createLabel.data);
+        setNewLabel("");
+      }
 
       const response = await axios.post(
         `${API_PATH}/expense`,
@@ -41,7 +56,9 @@ const AddEntryModal = ({ visible, closeHandler }) => {
 
       // refetch and show updated data
       const data = await fetchUser();
+      const labelData = await fetchLabel();
       setUser(data);
+      setLabelArr(labelData);
 
       // close modal
       closeHandler();
@@ -83,20 +100,6 @@ const AddEntryModal = ({ visible, closeHandler }) => {
           placeholder="Enter new title"
         />
 
-        {/* Enter New Label */}
-        <Input
-          bordered
-          fullWidth
-          onChange={(e) => {
-            const str = e.target.value;
-            const value = str.charAt(0).toUpperCase() + str.slice(1);
-            setLabel(value);
-          }}
-          color="primary"
-          type={"text"}
-          label="Label"
-          placeholder="Enter new label"
-        />
         {/* Enter Expenses */}
         <Input
           bordered
@@ -107,6 +110,51 @@ const AddEntryModal = ({ visible, closeHandler }) => {
           label="Expenses"
           placeholder="Enter new expend amount"
         />
+
+        {/* Enter New Label */}
+
+        <p className="label-heading">Label</p>
+        {label.currentKey === "AddLabel" ? (
+          <Input
+            aria-label="label"
+            bordered
+            fullWidth
+            onChange={(e) => {
+              const value = capitalize(e.target.value);
+              setNewLabel(value);
+            }}
+            color="primary"
+            type={"text"}
+            placeholder="Enter new label"
+          />
+        ) : (
+          <Dropdown>
+            <Dropdown.Button
+              bordered
+              color="primary"
+              css={{ tt: "capitalize" }}
+            >
+              {label}
+            </Dropdown.Button>
+            <Dropdown.Menu
+              aria-label="Dynamic Actions"
+              selectionMode="single"
+              selectedKeys={label}
+              onSelectionChange={setLabel}
+            >
+              {[...labelArr].map((item, idx) => (
+                <Dropdown.Item key={capitalize(item.name)}>
+                  {capitalize(item.name)}
+                </Dropdown.Item>
+              ))}
+              <Dropdown.Item key="AddLabel" withDivider color="success">
+                Add New Label
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        )}
+
+        {/* ---- */}
       </Modal.Body>
       <Modal.Footer justify="center">
         <Button auto flat color="error" onPress={closeHandler}>

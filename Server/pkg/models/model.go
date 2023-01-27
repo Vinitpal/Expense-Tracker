@@ -12,5 +12,5 @@ func init() {
 	config.Connect()
 	db = config.GetDB()
 	db.Set("gorm:auto_preload", true)
-	db.AutoMigrate(&User{}, &Expense{})
+	db.AutoMigrate(&User{}, &Expense{}, &Label{})
 }
