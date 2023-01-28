@@ -11,7 +11,7 @@ const LabelFilterModal = ({
   currentLabel,
   setCurrentLabel,
 }) => {
-  const { fetchUser } = useAppContext();
+  const { fetchUser, labelArr } = useAppContext();
 
   const allLabels = ["Food", "Shopping", "Petrol", "Studies"];
 
@@ -42,16 +42,16 @@ const LabelFilterModal = ({
         }}
         className="filter-modal-body"
       >
-        {[...allLabels].map((item, idx) => (
+        {[...labelArr].map((item, idx) => (
           <div
             key={idx}
-            onClick={() => setCurrentLabel(item)}
+            onClick={() => setCurrentLabel(item.name)}
             style={{
-              backgroundColor: item === currentLabel ? "#17c964" : "",
-              color: item === currentLabel ? "#ffffff" : "",
+              backgroundColor: item.name === currentLabel ? "#17c964" : "",
+              color: item.name === currentLabel ? "#ffffff" : "",
             }}
           >
-            {item}
+            {item.name}
           </div>
         ))}
       </Modal.Body>

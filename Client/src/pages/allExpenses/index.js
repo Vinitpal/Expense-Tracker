@@ -32,16 +32,23 @@ const AllExpenses = () => {
           allMonths.indexOf(currentMonth)
       );
 
-      // TODO: priority focus on filter label
+      // TODO: focus on filter label
       // things like label api and allowing user to get a dropdown of labels
       // and create a new label
       // and some shit like color ful label <---
       // after this sort acc to label
+      // done
       if (currentLabel) {
         expenses = expenses.filter(
           (item) => item.label.toLowerCase() === currentLabel.toLowerCase()
         );
       }
+
+      // TODO: priority focus on expense amount range filter
+      // agar currentMonth applied hai to uske acc range me show hoga
+      // if not then will simply sort every expenses
+
+      // TODO: clear filters button to show all expenses
 
       const expenseArr = dateSortExpenses(expenses);
 
