@@ -47,6 +47,9 @@ func CreateLabel(w http.ResponseWriter, r *http.Request) {
 
 	// parsing the obj in req.body
 	utils.ParseBody(r, newLabel)
+	color := utils.GenerateColor()
+
+	newLabel.Color = color
 
 	// creating new object with help of model schema
 	b := newLabel.CreateLabel()

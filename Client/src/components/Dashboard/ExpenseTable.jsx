@@ -30,9 +30,10 @@ const ExpenseTable = () => {
   const [selectedID, setSelectedID] = useState(null);
   const [loading, setLoading] = useState(true);
   const [expenses, setExpenses] = useState(null);
-  const { user, loadingUser } = useAppContext();
+  const { user, labelArr, loadingUser, getLabelColor } = useAppContext();
 
   const navigate = useNavigate();
+  console.log(labelArr);
 
   useEffect(() => {
     // calculating today's expenses
@@ -100,7 +101,12 @@ const ExpenseTable = () => {
                 </Table.Cell>
                 <Table.Cell>{item.title}</Table.Cell>
                 <Table.Cell>
-                  <Button css={{ display: "inline" }} color="primary">
+                  <Button
+                    css={{
+                      display: "inline",
+                      bg: getLabelColor(item),
+                    }}
+                  >
                     {item.label}
                   </Button>
                 </Table.Cell>

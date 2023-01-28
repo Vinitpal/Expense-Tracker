@@ -44,6 +44,17 @@ export function AppWrapper({ children }) {
     return data;
   };
 
+  const getLabelColor = (item) => {
+    let value = "";
+
+    for (let i = 0; i < labelArr.length; i++) {
+      const element = labelArr[i];
+      if (element.name === item.label) value = element.color;
+    }
+
+    return value;
+  };
+
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
@@ -73,6 +84,7 @@ export function AppWrapper({ children }) {
     fetchUser,
     fetchExpense,
     fetchLabel,
+    getLabelColor,
 
     loadingUser: loading,
     setoadingUser: setLoading,

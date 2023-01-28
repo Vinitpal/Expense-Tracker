@@ -7,7 +7,7 @@ import { useAppContext } from "../../context/state";
 import { allMonths } from "../../util";
 
 const AllExpenses = () => {
-  // ------- approach -- TODO
+  // ------- -- TODO
   // -> checkout how pagination works in next ui table
 
   const { user, loadingUser } = useAppContext();
@@ -48,7 +48,7 @@ const AllExpenses = () => {
       console.log(expenses, expenseArr);
       setFilterArr(expenseArr);
     }
-  }, [user, currentMonth, currentLabel]);
+  }, [loadingUser, user, currentMonth, currentLabel]);
 
   const dateSortExpenses = (expenses) => {
     // sorting the arr

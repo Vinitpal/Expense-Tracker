@@ -3,7 +3,9 @@ package utils
 import (
 	"encoding/json"
 	"io"
+	"math/rand"
 	"net/http"
+	"time"
 )
 
 func ParseBody(r *http.Request, x interface{}) {
@@ -14,14 +16,20 @@ func ParseBody(r *http.Request, x interface{}) {
 	}
 }
 
-func EnableCors(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, OPTIONS")
-	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
-	w.Header().Set("Content-Type", "application/json")
+func GenerateColor() string {
+	var colorSet = make(map[string]bool)
 
-	if r.Method == "OPTIONS" {
-		w.WriteHeader(204)
-		return
+	rand.Seed(time.Now().UnixNano())
+	letters := []rune("0123456789ABCDEF")
+	color := "#"
+
+	for i := 0; i < 6; i++ {
+		color += string(letters[rand.Intn(len(letters))])
 	}
+
+	if _, ok := colorSet[color]; ok {
+		return GenerateColor()
+	}
+	colorSet[color] = true
+	return color
 }

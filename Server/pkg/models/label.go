@@ -8,6 +8,7 @@ import (
 type Label struct {
 	Label_ID uuid.UUID `gorm:"type:char(36); primary_key"`
 	Name     string    `json:"name" gorm:"type:text;not null;uniqueIndex"`
+	Color    string    `json:"color" gorm:"type:text;not null;"`
 }
 
 // This functions are called before creating any Label
@@ -29,7 +30,7 @@ func (e *Label) UpdateLabelDetails() *Label {
 func GetAllLabels() []Label {
 	var Labels []Label
 
-	db.Preload("Expenses").Find(&Labels)
+	db.Find(&Labels)
 	return Labels
 }
 

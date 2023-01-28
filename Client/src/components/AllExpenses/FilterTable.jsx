@@ -17,6 +17,8 @@ import UpdateEntryModal from "../modals/EntryModal/UpdateEntryModal";
 const FilterTable = ({ user, expenses, loadingUser }) => {
   // console.log("checking table", user, expenses, loadingUser);
 
+  const { getLabelColor } = useAppContext();
+
   const [showEntryModal, setShowEntryModal] = useState(false);
   const entryHandler = () => setShowEntryModal(true);
   const closeEntryHandler = () => {
@@ -93,7 +95,9 @@ const FilterTable = ({ user, expenses, loadingUser }) => {
                   <Table.Row css={{ textAlign: "center" }} key={key}>
                     <Table.Cell>{item.title}</Table.Cell>
                     <Table.Cell>
-                      <Button css={{ display: "inline" }} color="primary">
+                      <Button
+                        css={{ display: "inline", bg: getLabelColor(item) }}
+                      >
                         {item.label}
                       </Button>
                     </Table.Cell>
