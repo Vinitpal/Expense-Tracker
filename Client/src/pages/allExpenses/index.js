@@ -15,6 +15,7 @@ const AllExpenses = () => {
 
   const [currentMonth, setCurrentMonth] = useState("");
   const [currentLabel, setCurrentLabel] = useState("");
+  const [currentPriceRange, setCurrentPriceRange] = useState("");
 
   // setting default month
   useEffect(() => {
@@ -23,7 +24,7 @@ const AllExpenses = () => {
   }, []);
 
   useEffect(() => {
-    console.log("filtering", user);
+    // console.log("filtering", user);
     if (!loadingUser) {
       // filtering according to month
       let expenses = user.Expenses.filter(
@@ -44,18 +45,27 @@ const AllExpenses = () => {
         );
       }
 
-      // TODO: priority focus on expense amount range filter
+      // TODO: focus on expense amount range filter
       // agar currentMonth applied hai to uske acc range me show hoga
       // if not then will simply sort every expenses
+      if (currentPriceRange) {
+        expenses = expenses.filter(
+          (item) =>
+            item.expend_amount >= currentPriceRange.start &&
+            item.expend_amount < currentPriceRange.end
+        );
+      }
 
+      // TODO: priority clear button in each filter modal
+      // for that specific filter option
       // TODO: clear filters button to show all expenses
 
       const expenseArr = dateSortExpenses(expenses);
 
-      console.log(expenses, expenseArr);
+      console.log(currentPriceRange, expenses, expenseArr);
       setFilterArr(expenseArr);
     }
-  }, [loadingUser, user, currentMonth, currentLabel]);
+  }, [loadingUser, user, currentMonth, currentLabel, currentPriceRange]);
 
   const dateSortExpenses = (expenses) => {
     // sorting the arr
@@ -89,7 +99,7 @@ const AllExpenses = () => {
       }
     });
 
-    console.log(expenses, expenseArr);
+    // console.log(expenses, expenseArr);
     return expenseArr;
   };
 
@@ -101,8 +111,10 @@ const AllExpenses = () => {
         <FilterMenu
           currentMonth={currentMonth}
           currentLabel={currentLabel}
+          currentPriceRange={currentPriceRange}
           setCurrentMonth={setCurrentMonth}
           setCurrentLabel={setCurrentLabel}
+          setCurrentPriceRange={setCurrentPriceRange}
         />
 
         <FilterTable

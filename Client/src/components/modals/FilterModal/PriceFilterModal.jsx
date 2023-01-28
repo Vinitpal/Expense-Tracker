@@ -71,11 +71,11 @@ const PriceFilterModal = ({
         {[...allPriceRanges].map((item, idx) => (
           <div
             key={idx}
-            onClick={() => setCurrentPriceRange(item.title)}
+            onClick={() => setCurrentPriceRange(item)}
             style={{
               backgroundColor:
-                item.title === currentPriceRange ? "#17c964" : "",
-              color: item.title === currentPriceRange ? "#ffffff" : "",
+                item.title === currentPriceRange.title ? "#17c964" : "",
+              color: item.title === currentPriceRange.title ? "#ffffff" : "",
             }}
           >
             {item.title}

@@ -18,14 +18,14 @@ import { BiCoinStack } from "react-icons/bi";
 const FilterMenu = ({
   currentMonth,
   currentLabel,
+  currentPriceRange,
   setCurrentMonth,
   setCurrentLabel,
+  setCurrentPriceRange,
 }) => {
   // approach -- TODO :done
   // click on any buttons opens a modal
   // which allow to select filtering way
-
-  const [currentPriceRange, setCurrentPriceRange] = useState("");
 
   // modals state handlers
   const [showDateModal, setShowDateModal] = useState(false);
@@ -57,7 +57,7 @@ const FilterMenu = ({
           <MdLabelOutline className="icon" />
         </button>
         <button className="price" onClick={priceHandler}>
-          {currentPriceRange ? currentPriceRange : "Price Range"}
+          {currentPriceRange ? currentPriceRange.title : "Price Range"}
           <BiCoinStack className="icon" />
         </button>
       </div>
