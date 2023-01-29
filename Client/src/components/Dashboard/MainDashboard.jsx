@@ -68,10 +68,23 @@ const MainDashboard = () => {
           </div>
         </div>
 
+        {/* // TODO: priority 
+            // -- add a mobile btn for create entry
+            // -- fix spaccing in the main dashboard
+      */}
+
         {/* Add New Record */}
         <button type="button" className="add-new-record" onClick={entryHandler}>
           <IoAddCircle className="icon" />
           Add New Record
+        </button>
+        {/* Add New Record for mobile*/}
+        <button
+          type="button"
+          className="add-new-record-mobile"
+          onClick={entryHandler}
+        >
+          <IoAddCircle className="icon" />
         </button>
 
         <UpdateBalanceModal

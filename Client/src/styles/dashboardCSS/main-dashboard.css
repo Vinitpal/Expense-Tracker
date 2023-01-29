@@ -100,7 +100,8 @@ p.label-heading {
 /***** Button Container Ends *****/
 /***** Add New Record Starts *****/
 
-.main-dashboard .amount-btn-wrapper .add-new-record {
+.main-dashboard .amount-btn-wrapper .add-new-record,
+.main-dashboard .amount-btn-wrapper .add-new-record-mobile {
   font-size: 1.3rem;
   font-weight: 600;
   display: flex;
@@ -117,6 +118,9 @@ p.label-heading {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   transition: all 0.3s ease-in-out;
+}
+.main-dashboard .amount-btn-wrapper .add-new-record-mobile {
+  display: none;
 }
 
 .main-dashboard .amount-btn-wrapper .add-new-record:hover {
@@ -148,6 +152,7 @@ p.label-heading {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 2rem 4rem 1rem;
   }
 
   .main-dashboard .amount-btn-wrapper .btn-container {
@@ -159,15 +164,27 @@ p.label-heading {
   }
 
   .main-dashboard .amount-btn-wrapper .add-new-record {
-    margin: 1rem 0;
-    width: 100%;
+    display: none;
+  }
+
+  .main-dashboard .amount-btn-wrapper .add-new-record-mobile {
+    display: flex;
+    font-size: 2.4rem;
+    padding: 0;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    bottom: 2rem;
+    right: 4rem;
+    z-index: 999;
   }
 }
 
 /* indicates screen after 600px i.e. for mobile phone */
 @media screen and (max-width: 600px) {
   .main-dashboard .amount-btn-wrapper {
-    padding: 2rem 2rem;
+    padding: 0px 2rem 0.5rem;
   }
 
   .main-dashboard .amount-btn-wrapper .btn-container {
@@ -180,6 +197,11 @@ p.label-heading {
 
   .main-dashboard .amount-btn-wrapper .btn-container div {
     width: 100%;
+  }
+
+  .main-dashboard .amount-btn-wrapper .add-new-record-mobile {
+    bottom: 2rem;
+    right: 1rem;
   }
 }
 

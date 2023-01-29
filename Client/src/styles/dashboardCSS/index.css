@@ -99,6 +99,26 @@
   .show-all-expenses {
     text-align: center;
   }
+
+  .expense-table-container .nextui-c-eKxzBn:nth-child(1),
+  .expense-table-container .nextui-c-kNgzEX:nth-child(1),
+  .expense-table-container .nextui-c-eKxzBn:nth-child(3),
+  .expense-table-container .nextui-c-kNgzEX:nth-child(3) {
+    display: none !important;
+  }
+
+  .expense-table-container .nextui-c-eKxzBn {
+    width: 33%;
+  }
+
+  .nextui-table-container .icon-btn {
+    margin: 0;
+    padding: 8px;
+  }
+
+  .nextui-c-eKxzBn:last-child {
+    padding-right: 0;
+  }
 }
 
 @media screen and (max-width: 600px) {

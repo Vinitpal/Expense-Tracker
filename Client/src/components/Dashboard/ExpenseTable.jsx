@@ -68,9 +68,13 @@ const ExpenseTable = () => {
         className="expense-table-container"
       >
         <Table.Header>
-          <Table.Column align="center">TIME</Table.Column>
+          <Table.Column align="center" className="time-column">
+            TIME
+          </Table.Column>
           <Table.Column align="center">TITLE</Table.Column>
-          <Table.Column align="center">LABEL</Table.Column>
+          <Table.Column align="center" className="label-column">
+            LABEL
+          </Table.Column>
           <Table.Column align="center">EXPENSES</Table.Column>
           <Table.Column align="center">MODIFY</Table.Column>
         </Table.Header>
@@ -93,14 +97,22 @@ const ExpenseTable = () => {
                 (a, b) => Date.parse(b.CreatedAt) - Date.parse(a.CreatedAt)
               ),
             ].map((item, key) => (
-              <Table.Row css={{ textAlign: "center" }} key={key}>
-                <Table.Cell>
+              <Table.Row
+                className="sadsad"
+                css={{ textAlign: "center" }}
+                key={key}
+              >
+                <Table.Cell aria-label="time-row">
                   {item.CreatedAt.split("T")[0].split("-").reverse().join("-") +
                     " | " +
                     item.CreatedAt.split("T")[1].split("+")[0]}
                 </Table.Cell>
-                <Table.Cell>{item.title}</Table.Cell>
                 <Table.Cell>
+                  {item.title.length > 12
+                    ? item.title.slice(0, 12) + "..."
+                    : item.title}
+                </Table.Cell>
+                <Table.Cell className="label-row">
                   <Button
                     css={{
                       display: "inline",

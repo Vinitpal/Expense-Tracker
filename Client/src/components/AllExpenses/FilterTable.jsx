@@ -93,7 +93,11 @@ const FilterTable = ({ user, expenses, loadingUser }) => {
               ) : (
                 [...expenseItem.Expenses].map((item, key) => (
                   <Table.Row css={{ textAlign: "center" }} key={key}>
-                    <Table.Cell>{item.title}</Table.Cell>
+                    <Table.Cell>
+                      {item.title.length > 12
+                        ? item.title.slice(0, 12) + "..."
+                        : item.title}
+                    </Table.Cell>
                     <Table.Cell>
                       <Button
                         css={{ display: "inline", bg: getLabelColor(item) }}
