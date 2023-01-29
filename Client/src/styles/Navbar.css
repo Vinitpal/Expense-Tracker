@@ -53,17 +53,17 @@ nav button {
 /* indicates screen after 600px i.e. for mobile phone */
 @media screen and (max-width: 600px) {
   nav {
-    padding: 2rem;
-    align-items: flex-start;
+    padding: 1rem;
   }
 
   nav button {
-    padding: 0.3rem 1rem;
-    font-size: 1.3rem;
+    padding: 3px 13px;
+    font-size: 0.9rem;
   }
 
   nav .popup {
     display: block;
+    align-self: flex-start;
   }
 
   .nextui-popover-content .mobile-nav-item {
@@ -74,6 +74,11 @@ nav button {
 
   .nextui-popover-content .mobile-nav-item:last-of-type {
     margin: 0;
+  }
+
+  nav h2.logo {
+    font-size: 1.6rem;
+    line-height: 2rem;
   }
 
   nav .login-btn {
@@ -88,8 +93,5 @@ nav button {
 /* indicates screen after 400px i.e. for small phone */
 
 @media screen and (max-width: 400px) {
-  nav h2.logo {
-    font-size: 2.3rem;
-  }
 }
 /***** Media Query Ends*****/

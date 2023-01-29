@@ -69,8 +69,9 @@ const MainDashboard = () => {
         </div>
 
         {/* // TODO: priority 
-            // -- add a mobile btn for create entry
-            // -- fix spaccing in the main dashboard
+            // -- add a mobile btn for create entry - done
+            // -- fix spaccing in the main dashboard - dpme
+            // --> responsive of all expenses page
       */}
 
         {/* Add New Record */}

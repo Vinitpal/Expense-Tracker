@@ -105,7 +105,7 @@ const FilterTable = ({ user, expenses, loadingUser }) => {
                         {item.label}
                       </Button>
                     </Table.Cell>
-                    <Table.Cell>{item.expend_amount}</Table.Cell>
+                    <Table.Cell>{"₹" + item.expend_amount}</Table.Cell>
                     <Table.Cell>
                       <button
                         type="button"

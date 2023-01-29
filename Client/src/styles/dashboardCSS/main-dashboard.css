@@ -184,19 +184,29 @@ p.label-heading {
 /* indicates screen after 600px i.e. for mobile phone */
 @media screen and (max-width: 600px) {
   .main-dashboard .amount-btn-wrapper {
-    padding: 0px 2rem 0.5rem;
+    padding: 0px 1rem 0.5rem;
   }
 
   .main-dashboard .amount-btn-wrapper .btn-container {
     width: 100%;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 5px;
     justify-content: center;
+  }
+
+  .main-dashboard .amount-btn-wrapper .btn-container button {
+    padding: 5px 10px;
   }
 
   .main-dashboard .amount-btn-wrapper .btn-container div {
     width: 100%;
+  }
+
+  .main-dashboard .amount-btn-wrapper .btn-container p {
+    font-size: 0.8rem;
+    margin: 5px;
+    text-align: left;
   }
 
   .main-dashboard .amount-btn-wrapper .add-new-record-mobile {

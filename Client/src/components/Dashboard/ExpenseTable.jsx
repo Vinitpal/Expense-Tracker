@@ -71,7 +71,9 @@ const ExpenseTable = () => {
           <Table.Column align="center" className="time-column">
             TIME
           </Table.Column>
-          <Table.Column align="center">TITLE</Table.Column>
+          <Table.Column align="center" className="title-column">
+            TITLE
+          </Table.Column>
           <Table.Column align="center" className="label-column">
             LABEL
           </Table.Column>
@@ -122,7 +124,7 @@ const ExpenseTable = () => {
                     {item.label}
                   </Button>
                 </Table.Cell>
-                <Table.Cell>{item.expend_amount}</Table.Cell>
+                <Table.Cell>{"₹" + item.expend_amount}</Table.Cell>
                 <Table.Cell>
                   <button
                     type="button"

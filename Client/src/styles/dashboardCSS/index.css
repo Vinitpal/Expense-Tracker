@@ -67,7 +67,6 @@
   cursor: pointer;
   display: inline-block;
   position: relative;
-  text-align: right;
   stroke-width: 0px;
   text-shadow: -0.25px -0.25px 0 transparent, 0.25px 0.25px transparent;
 }
@@ -107,6 +106,11 @@
     display: none !important;
   }
 
+  .expense-table-container .title-column {
+    border-top-left-radius: var(--nextui-radii-md);
+    border-bottom-left-radius: var(--nextui-radii-md);
+  }
+
   .expense-table-container .nextui-c-eKxzBn {
     width: 33%;
   }
@@ -122,12 +126,23 @@
 }
 
 @media screen and (max-width: 600px) {
-  .nextui-table-container,
   .expense-table-title {
-    margin: 0 1rem 2rem;
+    font-size: 1.3rem;
+    padding: 0.8rem 1rem 1rem;
+    margin: 0;
+    border-top: 1px solid #ccc;
+  }
+
+  .nextui-table-container {
+    margin: 0 1rem 0.3rem;
   }
 
   .show-all-expenses {
-    padding: 0;
+    padding-left: 1.5rem;
+    text-align: left;
+  }
+
+  .show-all-expenses p {
+    font-size: 0.85rem;
   }
 }
