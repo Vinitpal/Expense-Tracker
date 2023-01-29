@@ -14,13 +14,13 @@
 
 ## view all expense page
 
-- show expenses according to the date
+- responsive work :: PRIORITY
+  -- gotta increase the ux for mobile screens
 
 ## other functions
 
 - check out the aria-label issue
 - can use tooltip in various places
-- add context api for less lines of code
 
 # --- DONE ---
 
@@ -38,3 +38,6 @@
 - navbar responsive
 - landing section responsive
 - make dashboard responsive
+- done view all expense page
+- added filter features on that page
+- add context api for less lines of code

@@ -54,6 +54,15 @@ const LabelFilterModal = ({
             {item.name}
           </div>
         ))}
+        <div
+          onClick={() => setCurrentLabel("Clear")}
+          style={{
+            backgroundColor: "Clear" === currentLabel ? "#17c964" : "",
+            color: "Clear" === currentLabel ? "#ffffff" : "",
+          }}
+        >
+          {"Clear Label Filter"}
+        </div>
       </Modal.Body>
 
       <Modal.Footer justify="center">

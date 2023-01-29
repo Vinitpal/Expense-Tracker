@@ -81,6 +81,15 @@ const PriceFilterModal = ({
             {item.title}
           </div>
         ))}
+        <div
+          onClick={() => setCurrentPriceRange("Clear")}
+          style={{
+            backgroundColor: "Clear" === currentPriceRange ? "#17c964" : "",
+            color: "Clear" === currentPriceRange ? "#ffffff" : "",
+          }}
+        >
+          {"Clear Price Filter"}
+        </div>
       </Modal.Body>
 
       <Modal.Footer justify="center">

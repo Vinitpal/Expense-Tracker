@@ -61,7 +61,7 @@ const FilterTable = ({ user, expenses, loadingUser }) => {
             style={{ color: "rgba(0, 0, 0, 0.6)" }}
             className="expense-table-title"
           >
-            {expenseItem.date}
+            {expenseItem.date.split("-").reverse().join("-")}
           </h2>
           <Table
             bordered

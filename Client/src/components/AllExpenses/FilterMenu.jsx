@@ -14,6 +14,7 @@ import PriceFilterModal from "../modals/FilterModal/PriceFilterModal";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { MdLabelOutline } from "react-icons/md";
 import { BiCoinStack } from "react-icons/bi";
+import { AiOutlineDelete } from "react-icons/ai";
 
 const FilterMenu = ({
   currentMonth,
@@ -50,15 +51,29 @@ const FilterMenu = ({
 
       <div className="filter-buttons">
         <button className="month" onClick={dateHandler}>
-          {currentMonth} <AiOutlineCalendar className="icon" />
+          {currentMonth === "Clear" ? "Month" : currentMonth}{" "}
+          <AiOutlineCalendar className="icon" />
         </button>
         <button className="label" onClick={labelHandler}>
-          {currentLabel ? currentLabel : "Label"}
+          {currentLabel === "Clear" ? "Label" : currentLabel}
           <MdLabelOutline className="icon" />
         </button>
         <button className="price" onClick={priceHandler}>
-          {currentPriceRange ? currentPriceRange.title : "Price Range"}
+          {currentPriceRange === "Clear"
+            ? "Price Range"
+            : currentPriceRange.title}
           <BiCoinStack className="icon" />
+        </button>
+        <button
+          className="price"
+          onClick={() => {
+            setCurrentMonth("Clear");
+            setCurrentLabel("Clear");
+            setCurrentPriceRange("Clear");
+          }}
+        >
+          Clear Filter
+          <AiOutlineDelete className="icon" />
         </button>
       </div>
 

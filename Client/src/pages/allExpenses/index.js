@@ -14,8 +14,8 @@ const AllExpenses = () => {
   const [filterArr, setFilterArr] = useState([]);
 
   const [currentMonth, setCurrentMonth] = useState("");
-  const [currentLabel, setCurrentLabel] = useState("");
-  const [currentPriceRange, setCurrentPriceRange] = useState("");
+  const [currentLabel, setCurrentLabel] = useState("Clear");
+  const [currentPriceRange, setCurrentPriceRange] = useState("Clear");
 
   // setting default month
   useEffect(() => {
@@ -27,11 +27,16 @@ const AllExpenses = () => {
     // console.log("filtering", user);
     if (!loadingUser) {
       // filtering according to month
-      let expenses = user.Expenses.filter(
-        (item) =>
-          item.CreatedAt.split("T")[0].split("-")[1] - 1 ===
-          allMonths.indexOf(currentMonth)
-      );
+
+      let expenses = user.Expenses;
+
+      if (currentMonth !== "Clear") {
+        expenses = expenses.filter(
+          (item) =>
+            item.CreatedAt.split("T")[0].split("-")[1] - 1 ===
+            allMonths.indexOf(currentMonth)
+        );
+      }
 
       // TODO: focus on filter label
       // things like label api and allowing user to get a dropdown of labels
@@ -39,7 +44,7 @@ const AllExpenses = () => {
       // and some shit like color ful label <---
       // after this sort acc to label
       // done
-      if (currentLabel) {
+      if (currentLabel !== "Clear") {
         expenses = expenses.filter(
           (item) => item.label.toLowerCase() === currentLabel.toLowerCase()
         );
@@ -48,7 +53,7 @@ const AllExpenses = () => {
       // TODO: focus on expense amount range filter
       // agar currentMonth applied hai to uske acc range me show hoga
       // if not then will simply sort every expenses
-      if (currentPriceRange) {
+      if (currentPriceRange !== "Clear") {
         expenses = expenses.filter(
           (item) =>
             item.expend_amount >= currentPriceRange.start &&
@@ -56,9 +61,10 @@ const AllExpenses = () => {
         );
       }
 
-      // TODO: priority clear button in each filter modal
+      // TODO: clear button in each filter modal
       // for that specific filter option
       // TODO: clear filters button to show all expenses
+      // DONE
 
       const expenseArr = dateSortExpenses(expenses);
 

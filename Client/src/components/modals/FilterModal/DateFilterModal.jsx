@@ -59,6 +59,15 @@ const DateFilterModal = ({
             {item}
           </div>
         ))}
+        <div
+          onClick={() => setCurrentMonth("Clear")}
+          style={{
+            backgroundColor: "Clear" === currentMonth ? "#17c964" : "",
+            color: "Clear" === currentMonth ? "#ffffff" : "",
+          }}
+        >
+          {"Clear Month Filter"}
+        </div>
       </Modal.Body>
 
       <Modal.Footer justify="center">
