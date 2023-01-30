@@ -56,7 +56,7 @@ const ExpenseTable = () => {
 
   return (
     <>
-      <h2 className="expense-table-title">Todays Expenses: </h2>
+      <h2 className="expense-table-title dashboard">Todays Expenses: </h2>
       <Table
         bordered
         css={{

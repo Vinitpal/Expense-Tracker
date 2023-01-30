@@ -37,6 +37,10 @@
   font-size: 1.2rem;
 }
 
+.all-expenses .filter-buttons-mobile {
+  display: none;
+}
+
 /* Filter Modal */
 .filter-modal-body {
   scrollbar-width: auto;
@@ -60,4 +64,62 @@
   border-radius: 8px;
   background-color: rgb(253, 216, 229);
   transition: all 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 950px) {
+  .all-expenses .filter-menu {
+    margin: 0 4rem 0.5rem;
+  }
+
+  .all-expenses .filter-buttons {
+    display: none;
+  }
+
+  .all-expenses .filter-buttons-mobile {
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #000;
+    z-index: 9999;
+  }
+
+  .all-expenses .filter-buttons-mobile button {
+    border: none;
+    flex: 0.5;
+    font-size: 0.95rem;
+    padding: 7px 10px;
+    background-color: #f4fbf4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .all-expenses .filter-buttons-mobile button .icon {
+    font-size: 1.2rem;
+    margin-right: 4px;
+  }
+
+  .all-expenses .filter-buttons-mobile button:nth-child(1) {
+    border-right: 1px solid #000;
+  }
+
+  .all-expenses .filter-buttons-mobile button:nth-child(1) .icon {
+    margin-right: 6px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .all-expenses .filter-menu {
+    margin: 0 1rem 0.5rem;
+  }
+
+  .nextui-modal {
+    width: 90%;
+    margin: 0 auto;
+  }
 }

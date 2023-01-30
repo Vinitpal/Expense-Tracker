@@ -69,6 +69,7 @@ const FilterTable = ({ user, expenses, loadingUser }) => {
               height: "auto",
               width: "auto",
             }}
+            className="filter-table-container"
             selectionMode="single"
             aria-label="Table for expenses by the user"
           >

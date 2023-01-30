@@ -11,10 +11,12 @@ import LabelFilterModal from "../modals/FilterModal/LabelFilterModal";
 import PriceFilterModal from "../modals/FilterModal/PriceFilterModal";
 
 // icons
-import { AiOutlineCalendar } from "react-icons/ai";
+import { AiOutlineCalendar, AiOutlineClear } from "react-icons/ai";
 import { MdLabelOutline } from "react-icons/md";
 import { BiCoinStack } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
+import { BsFilterCircle } from "react-icons/bs";
+import MobileFilterModal from "../modals/FilterModal/MobileFilterModal";
 
 const FilterMenu = ({
   currentMonth,
@@ -43,6 +45,11 @@ const FilterMenu = ({
   const priceHandler = () => setShowPriceModal(true);
   const closePriceHandler = () => {
     setShowPriceModal(false);
+  };
+  const [showMobileFilterModal, setShowMobileFilterModal] = useState(false);
+  const mobileFilterHandler = () => setShowMobileFilterModal(true);
+  const closeMobileFilterHandler = () => {
+    setShowMobileFilterModal(false);
   };
 
   return (
@@ -77,6 +84,17 @@ const FilterMenu = ({
         </button>
       </div>
 
+      <div className="filter-buttons-mobile" onClick={mobileFilterHandler}>
+        <button>
+          <BsFilterCircle className="icon" />
+          Filter
+        </button>
+        <button>
+          <AiOutlineDelete className="icon" />
+          Clear
+        </button>
+      </div>
+
       <DateFilterModal
         currentMonth={currentMonth}
         setCurrentMonth={setCurrentMonth}
@@ -94,6 +112,16 @@ const FilterMenu = ({
         setCurrentPriceRange={setCurrentPriceRange}
         visible={showPriceModal}
         closeHandler={closePriceHandler}
+      />
+      <MobileFilterModal
+        currentMonth={currentMonth}
+        currentLabel={currentLabel}
+        currentPriceRange={currentPriceRange}
+        setCurrentMonth={setCurrentMonth}
+        setCurrentLabel={setCurrentLabel}
+        setCurrentPriceRange={setCurrentPriceRange}
+        visible={showMobileFilterModal}
+        closeHandler={closeMobileFilterHandler}
       />
     </div>
   );

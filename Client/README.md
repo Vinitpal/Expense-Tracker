@@ -2,6 +2,7 @@
 
 ## home page
 
+- mobile navbar improvement needed
 - fan animation color and styling
 - how to use section
 - login/signup/guest function implementation

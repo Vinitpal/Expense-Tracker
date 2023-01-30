@@ -130,6 +130,9 @@
     font-size: 1.3rem;
     padding: 0.8rem 1rem 1rem;
     margin: 0;
+  }
+
+  .expense-table-title.dashboard {
     border-top: 1px solid #ccc;
   }
 

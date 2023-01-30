@@ -72,6 +72,7 @@ const MainDashboard = () => {
             // -- add a mobile btn for create entry - done
             // -- fix spaccing in the main dashboard - dpme
             // --> responsive of all expenses page
+            // --> styling left
       */}
 
         {/* Add New Record */}
