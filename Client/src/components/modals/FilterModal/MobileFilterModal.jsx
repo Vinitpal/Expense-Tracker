@@ -14,6 +14,7 @@ const MobileFilterModal = ({
   setCurrentPriceRange,
 }) => {
   const { labelArr } = useAppContext();
+
   return (
     <>
       <Modal
@@ -37,99 +38,108 @@ const MobileFilterModal = ({
           css={{
             height: "200px",
           }}
-          className="filter-modal-body"
+          className="filter-modal-body-mobile"
         >
-          <Collapse.Group>
-            {/* Month */}
-            <Collapse title="Option A">
-              {[...allMonths].map((item, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => setCurrentMonth(item)}
-                  style={{
-                    backgroundColor: item === currentMonth ? "#17c964" : "",
-                    color: item === currentMonth ? "#ffffff" : "",
-                  }}
-                >
-                  {item}
-                </div>
-              ))}
+          {/* Month */}
+          <Collapse
+            shadow
+            bordered
+            title={currentMonth === "Clear" ? "Month" : currentMonth}
+          >
+            {[...allMonths].map((item, idx) => (
               <div
-                // onClick={() => setCurrentMonth("Clear")}
+                key={idx}
+                onClick={() => setCurrentMonth(item)}
                 style={{
-                  backgroundColor: "Clear" === currentMonth ? "#17c964" : "",
-                  color: "Clear" === currentMonth ? "#ffffff" : "",
+                  backgroundColor: item === currentMonth ? "#17c964" : "",
+                  color: item === currentMonth ? "#ffffff" : "",
                 }}
               >
-                {"Clear Month Filter"}
+                {item.slice(0, 3)}
               </div>
-            </Collapse>
+            ))}
+            <div
+              onClick={() => setCurrentMonth("Clear")}
+              style={{
+                backgroundColor: "Clear" === currentMonth ? "#17c964" : "",
+                color: "Clear" === currentMonth ? "#ffffff" : "",
+              }}
+            >
+              {"Clear Month Filter"}
+            </div>
+          </Collapse>
 
-            {/* Label */}
-            <Collapse title="Option B">
-              {[...labelArr].map((item, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => setCurrentLabel(item.name)}
-                  style={{
-                    backgroundColor:
-                      item.name === currentLabel ? "#17c964" : "",
-                    color: item.name === currentLabel ? "#ffffff" : "",
-                  }}
-                >
-                  {item.name}
-                </div>
-              ))}
+          {/* Label */}
+          <Collapse
+            shadow
+            bordered
+            title={currentLabel === "Clear" ? "Label" : currentLabel}
+          >
+            {[...labelArr].map((item, idx) => (
               <div
-                onClick={() => setCurrentLabel("Clear")}
+                key={idx}
+                onClick={() => setCurrentLabel(item.name)}
                 style={{
-                  backgroundColor: "Clear" === currentLabel ? "#17c964" : "",
-                  color: "Clear" === currentLabel ? "#ffffff" : "",
+                  backgroundColor: item.name === currentLabel ? "#17c964" : "",
+                  color: item.name === currentLabel ? "#ffffff" : "",
                 }}
               >
-                {"Clear Label Filter"}
+                {item.name}
               </div>
+            ))}
+            <div
+              onClick={() => setCurrentLabel("Clear")}
+              style={{
+                backgroundColor: "Clear" === currentLabel ? "#17c964" : "",
+                color: "Clear" === currentLabel ? "#ffffff" : "",
+              }}
+            >
+              {"Clear Label Filter"}
+            </div>
 
-              {/* Price filter  */}
-            </Collapse>
-            <Collapse title="Option C">
-              {[...allPriceRanges].map((item, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => setCurrentPriceRange(item)}
-                  style={{
-                    backgroundColor:
-                      item.title === currentPriceRange.title ? "#17c964" : "",
-                    color:
-                      item.title === currentPriceRange.title ? "#ffffff" : "",
-                  }}
-                >
-                  {item.title}
-                </div>
-              ))}
+            {/* Price filter  */}
+          </Collapse>
+
+          <Collapse
+            shadow
+            bordered
+            title={
+              currentPriceRange === "Clear"
+                ? "Price Range"
+                : currentPriceRange.title
+            }
+          >
+            {[...allPriceRanges].map((item, idx) => (
               <div
-                onClick={() => setCurrentPriceRange("Clear")}
+                key={idx}
+                onClick={() => setCurrentPriceRange(item)}
                 style={{
                   backgroundColor:
-                    "Clear" === currentPriceRange ? "#17c964" : "",
-                  color: "Clear" === currentPriceRange ? "#ffffff" : "",
+                    item.title === currentPriceRange.title ? "#17c964" : "",
+                  color:
+                    item.title === currentPriceRange.title ? "#ffffff" : "",
                 }}
               >
-                {"Clear Price Filter"}
+                {item.title}
               </div>
-            </Collapse>
-          </Collapse.Group>
+            ))}
+            <div
+              onClick={() => setCurrentPriceRange("Clear")}
+              style={{
+                backgroundColor: "Clear" === currentPriceRange ? "#17c964" : "",
+                color: "Clear" === currentPriceRange ? "#ffffff" : "",
+              }}
+            >
+              {"Clear Price Filter"}
+            </div>
+          </Collapse>
         </Modal.Body>
 
         <Modal.Footer justify="center">
           <Button auto flat color="error" onPress={closeHandler}>
             Close
           </Button>
-          <Button
-            auto
-            color="success"
-            //   onPress={() => filterLabel()}
-          >
+          <Button auto color="success" onPress={closeHandler}>
             Confirm
           </Button>
         </Modal.Footer>

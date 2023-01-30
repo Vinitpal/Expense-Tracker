@@ -111,6 +111,26 @@
   .all-expenses .filter-buttons-mobile button:nth-child(1) .icon {
     margin-right: 6px;
   }
+
+  .filter-modal-body-mobile .nextui-c-hPzDAx .nextui-collapse-title {
+    font-size: 1.2rem;
+  }
+
+  .filter-modal-body-mobile .nextui-c-hPzDAx .nextui-collapse-content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .filter-modal-body-mobile .nextui-c-hPzDAx .nextui-collapse-content div {
+    text-align: center;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: rgb(253, 216, 229);
+    transition: all 0.3s ease-in-out;
+    padding: 0.3rem 0.8rem;
+  }
 }
 
 @media screen and (max-width: 600px) {

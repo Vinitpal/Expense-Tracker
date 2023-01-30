@@ -1,2 +1,8 @@
 @import "./filter-menu.css";
 @import "./filter-table.css";
+
+@media screen and (max-width: 950px) {
+  .all-expenses {
+    margin-bottom: 4rem;
+  }
+}

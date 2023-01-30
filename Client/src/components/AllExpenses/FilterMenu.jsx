@@ -84,12 +84,18 @@ const FilterMenu = ({
         </button>
       </div>
 
-      <div className="filter-buttons-mobile" onClick={mobileFilterHandler}>
-        <button>
+      <div className="filter-buttons-mobile">
+        <button onClick={mobileFilterHandler}>
           <BsFilterCircle className="icon" />
           Filter
         </button>
-        <button>
+        <button
+          onClick={() => {
+            setCurrentMonth("Clear");
+            setCurrentLabel("Clear");
+            setCurrentPriceRange("Clear");
+          }}
+        >
           <AiOutlineDelete className="icon" />
           Clear
         </button>
