@@ -11,7 +11,7 @@ import LabelFilterModal from "../modals/FilterModal/LabelFilterModal";
 import PriceFilterModal from "../modals/FilterModal/PriceFilterModal";
 
 // icons
-import { AiOutlineCalendar, AiOutlineClear } from "react-icons/ai";
+import { AiOutlineCalendar } from "react-icons/ai";
 import { MdLabelOutline } from "react-icons/md";
 import { BiCoinStack } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";

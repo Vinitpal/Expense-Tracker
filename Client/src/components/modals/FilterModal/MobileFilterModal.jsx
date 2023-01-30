@@ -1,7 +1,13 @@
+// react and components
 import React from "react";
-import { Modal, Button, Text, Collapse } from "@nextui-org/react";
-import { allMonths, allPriceRanges } from "../../../util";
 import { useAppContext } from "../../../context/state";
+import { allMonths, allPriceRanges } from "../../../util";
+
+// lib
+import { BiCoinStack } from "react-icons/bi";
+import { MdLabelOutline } from "react-icons/md";
+import { AiOutlineCalendar } from "react-icons/ai";
+import { Modal, Button, Text, Collapse } from "@nextui-org/react";
 
 const MobileFilterModal = ({
   visible,
@@ -40,11 +46,16 @@ const MobileFilterModal = ({
           }}
           className="filter-modal-body-mobile"
         >
-          {/* Month */}
+          {/*----- Month -----*/}
           <Collapse
             shadow
             bordered
             title={currentMonth === "Clear" ? "Month" : currentMonth}
+            contentLeft={
+              <AiOutlineCalendar
+                style={{ fontSize: "1.2rem", marginBottom: "2px" }}
+              />
+            }
           >
             {[...allMonths].map((item, idx) => (
               <div
@@ -69,11 +80,16 @@ const MobileFilterModal = ({
             </div>
           </Collapse>
 
-          {/* Label */}
+          {/*----- Label -----*/}
           <Collapse
             shadow
             bordered
             title={currentLabel === "Clear" ? "Label" : currentLabel}
+            contentLeft={
+              <MdLabelOutline
+                style={{ fontSize: "1.2rem", marginBottom: "2px" }}
+              />
+            }
           >
             {[...labelArr].map((item, idx) => (
               <div
@@ -96,10 +112,9 @@ const MobileFilterModal = ({
             >
               {"Clear Label Filter"}
             </div>
-
-            {/* Price filter  */}
           </Collapse>
 
+          {/*----- Price filter  -----*/}
           <Collapse
             shadow
             bordered
@@ -107,6 +122,11 @@ const MobileFilterModal = ({
               currentPriceRange === "Clear"
                 ? "Price Range"
                 : currentPriceRange.title
+            }
+            contentLeft={
+              <BiCoinStack
+                style={{ fontSize: "1.2rem", marginBottom: "2px" }}
+              />
             }
           >
             {[...allPriceRanges].map((item, idx) => (
