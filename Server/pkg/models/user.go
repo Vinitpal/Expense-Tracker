@@ -10,6 +10,7 @@ type User struct {
 	Name     string    `json:"name" gorm:"type:text;not null;uniqueIndex"`
 	Balance  int       `json:"balance"`
 	Expenses []Expense `gorm:"ForeignKey:User_ID"`
+	Labels   []Label   `gorm:"ForeignKey:User_ID"`
 }
 
 // This functions are called before creating any User
@@ -31,13 +32,13 @@ func (e *User) UpdateUserDetails() *User {
 func GetAllUsers() []User {
 	var Users []User
 
-	db.Preload("Expenses").Find(&Users)
+	db.Preload("Expenses").Preload("Labels").Find(&Users)
 	return Users
 }
 
 func GetUserById(Id string) (*User, *gorm.DB) {
 	var getUser User
-	db := db.Where("User_ID=?", Id).Preload("Expenses").Find(&getUser)
+	db := db.Where("User_ID=?", Id).Preload("Expenses").Preload("Labels").Find(&getUser)
 	return &getUser, db
 }
 

@@ -13,7 +13,7 @@ const AddEntryModal = ({ visible, closeHandler, label, setLabel }) => {
   const [newLabel, setNewLabel] = useState("");
   const [expendAmount, setExpendAmount] = useState();
 
-  const { user, setUser, fetchUser, labelArr, setLabelArr, fetchLabel } =
+  const { userID, user, setUser, fetchUser, labelArr, setLabelArr } =
     useAppContext();
 
   console.log(label.currentKey);
@@ -55,10 +55,9 @@ const AddEntryModal = ({ visible, closeHandler, label, setLabel }) => {
       console.log("working, response: ", response.data);
 
       // refetch and show updated data
-      const data = await fetchUser();
-      const labelData = await fetchLabel();
+      const data = await fetchUser(userID);
       setUser(data);
-      setLabelArr(labelData);
+      setLabelArr(data.Labels);
 
       // close modal
       closeHandler();

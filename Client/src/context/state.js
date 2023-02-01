@@ -41,13 +41,13 @@ export function AppWrapper({ children }) {
     return data;
   };
 
-  const fetchLabel = async (id) => {
-    const res = id
-      ? await fetch(`${API_PATH}/label/${id}`)
-      : await fetch(`${API_PATH}/label`);
-    const data = await res.json();
-    return data;
-  };
+  // const fetchLabel = async (id) => {
+  //   const res = id
+  //     ? await fetch(`${API_PATH}/label/${id}`)
+  //     : await fetch(`${API_PATH}/label`);
+  //   const data = await res.json();
+  //   return data;
+  // };
 
   const getLabelColor = (item) => {
     let value = "";
@@ -62,17 +62,16 @@ export function AppWrapper({ children }) {
 
   useEffect(() => {
     const getData = async () => {
-      setLoading(true);
+      console.log("get data loading");
 
+      // setLoading(true);
       // const data = await fetchUser(userID);
       // console.log(data);
-
-      const labelData = await fetchLabel();
-      console.log(labelData);
-
+      // const labelData = await fetchLabel();
+      // console.log(labelData);
       // setUser(data);
-      setLabelArr(labelData);
-      setLoading(false);
+      // setLabelArr(labelData);
+      // setLoading(false);
     };
 
     getData();
@@ -89,7 +88,7 @@ export function AppWrapper({ children }) {
 
     fetchUser,
     fetchExpense,
-    fetchLabel,
+    // fetchLabel,
     getLabelColor,
 
     loadingUser: loading,

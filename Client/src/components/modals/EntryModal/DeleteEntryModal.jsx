@@ -8,14 +8,14 @@ import axios from "axios";
 import { Modal, Button, Text } from "@nextui-org/react";
 
 const DeleteEntryModal = ({ visible, closeHandler, expenseID }) => {
-  const { setUser, fetchUser } = useAppContext();
+  const { userID, setUser, fetchUser } = useAppContext();
 
   const deleteEntry = async () => {
     try {
       console.log(expenseID);
       const response = await axios.delete(`${API_PATH}/expense/${expenseID}`);
 
-      const data = await fetchUser();
+      const data = await fetchUser(userID);
       setUser(data);
 
       closeHandler();

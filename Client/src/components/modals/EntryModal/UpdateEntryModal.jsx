@@ -11,7 +11,7 @@ const UpdateEntryModal = ({ visible, closeHandler, expenseID }) => {
   const [title, setTitle] = useState("");
   const [label, setLabel] = useState("");
   const [expendAmount, setExpendAmount] = useState(0);
-  const { setUser, fetchUser, fetchExpense } = useAppContext();
+  const { userID, setUser, fetchUser, fetchExpense } = useAppContext();
 
   const fetchExpenseData = async (id) => {
     const data = await fetchExpense(id);
@@ -48,7 +48,7 @@ const UpdateEntryModal = ({ visible, closeHandler, expenseID }) => {
       console.log("working, response: ", response.data);
 
       // refetch and show updated data
-      const data = await fetchUser();
+      const data = await fetchUser(userID);
       fetchExpenseData(expenseID);
       setUser(data);
 
