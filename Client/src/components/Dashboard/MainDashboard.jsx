@@ -39,7 +39,7 @@ const MainDashboard = () => {
       console.log(user);
 
       let totalAmount = 0;
-      user.Expenses.forEach((element) => {
+      user.Expenses?.forEach((element) => {
         totalAmount += element.expend_amount;
       });
 

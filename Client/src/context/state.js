@@ -10,8 +10,8 @@ export function AppWrapper({ children }) {
   const [userID, setUserID] = useState("a038c272-c533-44d0-896c-a684974b4231");
   // TODO: setup create new user function
   // two methods
-  // one with local storage
-  // one with google auth integration
+  // one with local storage -> for guest login
+  // one with google auth integration -> for actual sign/login
 
   const wait = (time) => {
     return new Promise((resolve) => {
@@ -19,13 +19,18 @@ export function AppWrapper({ children }) {
     });
   };
 
-  // get userId from local storage
-  // if no userId in local then wait for new id generation
-  // and in new id generation we will store id to local storage
-  // and the step will go back to step 1
+  // --> approach for guest login
+  // - when user click on btn
+  // - check if userId is on LS
+  // - if yes then fetchUser and move to dashboard
+  // - if no then fire a request to create user
+  // - and create a user with guest name
+  // - after new user creation, store its userId in LS
+  // - and use it for future logins
+  // - for logout simply kill the userId in LS
 
-  const fetchUser = async () => {
-    const res = await fetch(`${API_PATH}/user/${userID}`);
+  const fetchUser = async (id) => {
+    const res = await fetch(`${API_PATH}/user/${id}`);
     const data = await res.json();
     return data;
   };
@@ -59,13 +64,13 @@ export function AppWrapper({ children }) {
     const getData = async () => {
       setLoading(true);
 
-      const data = await fetchUser();
-      console.log(data);
+      // const data = await fetchUser(userID);
+      // console.log(data);
 
       const labelData = await fetchLabel();
       console.log(labelData);
 
-      setUser(data);
+      // setUser(data);
       setLabelArr(labelData);
       setLoading(false);
     };
@@ -76,6 +81,7 @@ export function AppWrapper({ children }) {
   let sharedState = {
     wait,
     userID,
+    setUserID,
     user,
     setUser,
     labelArr,
@@ -87,7 +93,7 @@ export function AppWrapper({ children }) {
     getLabelColor,
 
     loadingUser: loading,
-    setoadingUser: setLoading,
+    setLoadingUser: setLoading,
 
     storeToLocal: (key, value) => {
       localStorage.setItem(key, JSON.stringify(value));

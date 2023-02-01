@@ -1,9 +1,10 @@
 # todo
 
-## next three tasks
+## next tasks
 
-- can use tooltip in various places <-
+- limit labels to specific users
 - login and sign up feature <-
+- can use tooltip in various places <-
 - cleanup <-
 
 ## home page
@@ -42,5 +43,6 @@
 - done view all expense page
 - added filter features on that page
 - add context api for less lines of code
-- view all page -- responsive work :: PRIORITY
+- view all page -- responsive work
   -- gotta increase the ux for mobile screens
+- guest login

@@ -28,7 +28,7 @@ const AllExpenses = () => {
     if (!loadingUser) {
       // filtering according to month
 
-      let expenses = user.Expenses;
+      let expenses = user.Expenses || [];
 
       if (currentMonth !== "Clear") {
         expenses = expenses.filter(

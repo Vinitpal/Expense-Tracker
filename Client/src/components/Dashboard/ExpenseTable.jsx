@@ -29,7 +29,7 @@ const ExpenseTable = () => {
 
   const [selectedID, setSelectedID] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [expenses, setExpenses] = useState(null);
+  const [expenses, setExpenses] = useState([""]);
   const { user, labelArr, loadingUser, getLabelColor } = useAppContext();
 
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const ExpenseTable = () => {
     if (!loadingUser) {
       const date = new Date().toJSON().slice(0, 10);
 
-      const todaysExpenses = user.Expenses.filter(
+      const todaysExpenses = user.Expenses?.filter(
         (item) => item.CreatedAt.split("T")[0] === date
       );
 
@@ -48,6 +48,7 @@ const ExpenseTable = () => {
       console.log(todaysExpenses);
 
       setExpenses(todaysExpenses);
+      // console.log(user.Expenses, todaysExpenses);
       setLoading(false);
     } else {
       setLoading(true);
@@ -85,7 +86,7 @@ const ExpenseTable = () => {
             zIndex: 1,
           }}
         >
-          {(loading && !expenses) || expenses.length === 0 ? (
+          {loading || !expenses || expenses?.length === 0 ? (
             <Table.Row css={{ textAlign: "center" }} key={1}>
               <Table.Cell> </Table.Cell>
               <Table.Cell> </Table.Cell>
@@ -95,7 +96,7 @@ const ExpenseTable = () => {
             </Table.Row>
           ) : (
             [
-              ...expenses.sort(
+              ...expenses?.sort(
                 (a, b) => Date.parse(b.CreatedAt) - Date.parse(a.CreatedAt)
               ),
             ].map((item, key) => (
