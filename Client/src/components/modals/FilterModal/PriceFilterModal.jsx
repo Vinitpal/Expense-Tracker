@@ -69,7 +69,7 @@ const PriceFilterModal = ({
         <Button auto flat color="error" onPress={closeHandler}>
           Close
         </Button>
-        <Button auto color="success" onPress={() => filterPrice()}>
+        <Button auto color="success" onPress={closeHandler}>
           Confirm
         </Button>
       </Modal.Footer>

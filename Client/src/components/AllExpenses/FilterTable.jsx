@@ -55,8 +55,12 @@ const FilterTable = ({ user, expenses, loadingUser }) => {
 
   return (
     <>
+      {expenses.length === 0 && (
+        <div className="empty-filter-arr">No Expenses in selected label.</div>
+      )}
+
       {[...expenses].map((expenseItem, idx) => (
-        <>
+        <div key={idx}>
           <h2
             style={{ color: "rgba(0, 0, 0, 0.6)" }}
             className="expense-table-title"
@@ -134,7 +138,7 @@ const FilterTable = ({ user, expenses, loadingUser }) => {
               )}
             </Table.Body>
           </Table>
-        </>
+        </div>
       ))}
       <UpdateEntryModal
         visible={showEntryModal}

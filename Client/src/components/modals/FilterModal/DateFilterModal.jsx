@@ -74,7 +74,7 @@ const DateFilterModal = ({
         <Button auto flat color="error" onPress={closeHandler}>
           Close
         </Button>
-        <Button auto color="success" onPress={() => filterDate()}>
+        <Button auto color="success" onPress={closeHandler}>
           Confirm
         </Button>
       </Modal.Footer>

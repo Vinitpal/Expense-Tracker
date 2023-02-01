@@ -69,7 +69,7 @@ const LabelFilterModal = ({
         <Button auto flat color="error" onPress={closeHandler}>
           Close
         </Button>
-        <Button auto color="success" onPress={() => filterLabel()}>
+        <Button auto color="success" onPress={closeHandler}>
           Confirm
         </Button>
       </Modal.Footer>
