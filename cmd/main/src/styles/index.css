@@ -1,0 +1,47 @@
+/* Pages css */
+@import "./homeCSS/index.css";
+@import "./dashboardCSS/index.css";
+@import "./allExpensesCSS/index.css";
+
+/* Components css */
+@import "./Navbar.css";
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* * {
+  scrollbar-width: auto;
+  scrollbar-color: #c9c9c9 #ffffff;
+  outline: none !important;
+}
+
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #c9c9c9;
+  border: 3px solid #1f2937;
+  border-radius: 10px;
+} */

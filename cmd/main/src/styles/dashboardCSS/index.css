@@ -1,0 +1,151 @@
+@import "./main-dashboard.css";
+
+/* css for clear button in expense modal */
+.nextui-c-ctQnhE {
+  position: absolute;
+  right: 8px !important;
+}
+
+.nextui-table-container {
+  margin: 0 4rem 1rem;
+}
+
+.nextui-c-eKxzBn {
+  width: 20%;
+}
+
+/* expense table css starts */
+.expense-table-title {
+  font-weight: 500;
+  font-size: 1.6rem;
+  margin: 0 4rem 0.8rem;
+}
+
+.nextui-table-container .icon-btn {
+  margin: 0 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+}
+
+.nextui-table-container .icon {
+  font-size: 1.3rem;
+}
+
+.nextui-table-container .icon-btn.update .icon {
+  color: #0f9b0f;
+}
+
+.nextui-table-container .icon-btn.update:hover {
+  background-color: #0f9b0f;
+}
+
+.nextui-table-container .icon-btn.update:hover .icon {
+  color: #fff;
+}
+
+.nextui-table-container .icon-btn.delete .icon {
+  color: #f60000;
+}
+
+.nextui-table-container .icon-btn.delete:hover {
+  background-color: #f60000;
+}
+
+.nextui-table-container .icon-btn.delete:hover .icon {
+  color: #fff;
+}
+
+.show-all-expenses {
+  text-align: right;
+  padding: 0 4rem;
+}
+
+.show-all-expenses p {
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  stroke-width: 0px;
+  text-shadow: -0.25px -0.25px 0 transparent, 0.25px 0.25px transparent;
+}
+
+.show-all-expenses p:hover {
+  text-shadow: -0.25px -0.25px 0 #0f9b0f, 0.25px 0.25px #0f9b0f;
+  color: #0f9b0f;
+}
+
+.show-all-expenses p::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2.5px;
+  bottom: 0;
+  left: 0;
+  background-color: #0f9b0f;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.show-all-expenses p:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+@media screen and (max-width: 900px) {
+  .show-all-expenses {
+    text-align: center;
+  }
+
+  .expense-table-container .nextui-c-eKxzBn:nth-child(1),
+  .expense-table-container .nextui-c-kNgzEX:nth-child(1),
+  .expense-table-container .nextui-c-eKxzBn:nth-child(3),
+  .expense-table-container .nextui-c-kNgzEX:nth-child(3) {
+    display: none !important;
+  }
+
+  .expense-table-container .title-column {
+    border-top-left-radius: var(--nextui-radii-md);
+    border-bottom-left-radius: var(--nextui-radii-md);
+  }
+
+  .expense-table-container .nextui-c-eKxzBn {
+    width: 33%;
+  }
+
+  .nextui-table-container .icon-btn {
+    margin: 0;
+    padding: 8px;
+  }
+
+  .nextui-c-eKxzBn:last-child {
+    padding-right: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .expense-table-title {
+    font-size: 1.3rem;
+    padding: 0.8rem 1rem 1rem;
+    margin: 0;
+  }
+
+  .expense-table-title.dashboard {
+    border-top: 1px solid #ccc;
+  }
+
+  .nextui-table-container {
+    margin: 0 1rem 0.3rem;
+  }
+
+  .show-all-expenses {
+    padding-left: 1.5rem;
+    text-align: left;
+  }
+
+  .show-all-expenses p {
+    font-size: 0.85rem;
+  }
+}
