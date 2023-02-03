@@ -21,13 +21,22 @@
 
         --- above is done, I've combined client and server
         --- now i can use
-        --- for build: "npm run build && go build main.go"
+        --- for build: "npm i && npm run build && go build main.go"
         --- for run: "go run main.go"
         --- issue here is: I have to cd two folders inside before running this cmd
         --- need to check if hosting platform allow above issue or not
+        --- apparantely above thing worked by changing the root directory to cmd/main
+        --- now there are bunch of errors about mysql
 
     - check about mysql server runtime
+        --- i found out that
+        --- my current app is running with help of localhost mysql
+        --- I would need to setup a external mysql sever <-
+        --- that will talk with my api server
+
+
     - and finally host golang
+
   ```
 
 - login and sign up feature <-
